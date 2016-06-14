@@ -366,16 +366,10 @@ $queryString_yetenekler = sprintf("&totalRows_yetenekler=%d%s", $totalRows_yeten
 				<div id="tab_section">
 					<div id="splash" class="tab_content"><!-- Main page -->
 						<div class="author_info">
-							<div class="user_desc"><center><?php echo $row_ayarlar['ilksayfabaslik']; ?><center></div>
-							<div class="phone_num">
-								<span class="icon"></span>
-								<span class="phone"><?php echo $row_ayarlar['telefonnumarasi']; ?></span>
+							<div class="user_desc">
+								<center><?php echo $row_ayarlar['ilksayfabaslik']; ?><center>
 							</div>
-							<div class="addition">
-								<span class="email"><?php echo $row_ayarlar['emailadresi']; ?></span>
-								<span class="website"><?php echo $row_ayarlar['siteadresi']; ?></span>
-								<span class="website"><?php echo $row_ayarlar['ilksayfaicerik']; ?></span>
-							</div>
+							<p><?php echo $row_ayarlar['ilksayfaicerik']; ?></p>
 						</div>
 						<div class="social_links">
 							<ul><?php do { ?>
@@ -384,22 +378,25 @@ $queryString_yetenekler = sprintf("&totalRows_yetenekler=%d%s", $totalRows_yeten
 							</ul>
 						</div>
 					</div><!-- /Main Page -->
+
 					<div id="resume" class="tab_content"><!-- Resume Section -->
-            <div class="section-header opened">
-                <a href="#" class="section_toggle"><span><img src="images/section_toggle.png" height="78" width="48" alt="Title Example"></span></a>
-              <h2 class="section-title icon2">
-                <span class="icon category1"></span>
-                Eğitim
-              </h2>
-            </div>
+			            <div class="section-header opened">
+			                <a href="#" class="section_toggle"><span><img src="images/section_toggle.png" height="78" width="48" alt="Title Example"></span></a>
+			              <h2 class="section-title icon2">
+			                <span class="icon category1"></span>
+			                Eğitim
+			              </h2>
+			            </div>
+
 						<div class="section-content">
-            <?php do { ?>
+            				<?php do { ?>
 							<!-- Resume Post -->
 							<article class="post resume_post resume_post_1 first odd">
 								<div class="resume_period category1">
 									<span class="period_from"><?php echo $row_egitim['bitirmetarihi']; ?></span>
 									<div class="period_to"><?php echo $row_egitim['baslamatarihi']; ?></div>
 								</div>
+
 								<div class="extra_wrap">
 									<div class="resume_header">
 										<h4 class="post_title">
@@ -414,25 +411,28 @@ $queryString_yetenekler = sprintf("&totalRows_yetenekler=%d%s", $totalRows_yeten
 									<div class="resume_content">
 										<p><?php echo $row_egitim['aciklama']; ?></p>
 									</div>
+								</div>
 							</article>
-              <?php } while ($row_egitim = mysql_fetch_assoc($egitim)); ?>
-            </div>
-							<!-- /Resume Post -->
-							<!-- Resume Post -->
-            <div class="section-header opened">
-              <a href="#" class="section_toggle"><span><img src="images/section_toggle.png" height="78" width="48" alt="Title Example"></span></a>
-              <h2 class="section-title icon2">
-                <span class="icon category2"></span>
-                Deneyimler
-              </h2>
-            </div>
+					        <?php } while ($row_egitim = mysql_fetch_assoc($egitim)); ?>
+					    </div>
+						<!-- /Resume Post -->
+						<!-- Resume Post -->
+			            <div class="section-header opened">
+			              <a href="#" class="section_toggle"><span><img src="images/section_toggle.png" height="78" width="48" alt="Title Example"></span></a>
+			              <h2 class="section-title icon2">
+			                <span class="icon category2"></span>
+			                Deneyimler
+			              </h2>
+			            </div>
+
 						<div class="section-content">
-              <?php do { ?>
+              				<?php do { ?>
 							<article class="post resume_post resume_post_2 odd">
 								<div class="resume_period category2">
 									<span class="period_from"><?php echo $row_deneyimler['ayrilmatarihi']; ?></span>
 									<div class="period_to"><?php echo $row_deneyimler['baslamatarihi']; ?></div>
 								</div>
+
 								<div class="extra_wrap">
 									<div class="resume_header">
 										<h4 class="post_title">
@@ -447,22 +447,24 @@ $queryString_yetenekler = sprintf("&totalRows_yetenekler=%d%s", $totalRows_yeten
 									<div class="resume_content">
 										<p><?php echo $row_deneyimler['aciklama']; ?></p>
 									</div>
-							</div>
+								</div>
 							</article>
-              <?php } while ($row_deneyimler = mysql_fetch_assoc($deneyimler)); ?>
+              				<?php } while ($row_deneyimler = mysql_fetch_assoc($deneyimler)); ?>
 						</div>
-            <div class="section-header widgets_section opened">
-              <a href="#" class="section_toggle"><span><img src="images/section_toggle.png" height="78" width="48" alt="Title Example"></span></a>
-              <h2 class="section-title icon2">
-                <span class="icon"></span>
-                Skills (Beceriler)
-              </h2>
-            </div>
+
+			            <div class="section-header widgets_section opened">
+			              <a href="#" class="section_toggle"><span><img src="images/section_toggle.png" height="78" width="48" alt="Title Example"></span></a>
+			              <h2 class="section-title icon2">
+			                <span class="icon"></span>
+			                Skills (Beceriler)
+			              </h2>
+			            </div>
+
 						<div class="skills_sidebar_section">
 							<!-- Skills widget -->
 							<aside class="widget-even widget widget_skills">
 								<h3 class="widget_title">Programming Skills (Programlama Becerileri)</h3>
-                <?php do { ?>
+                				<?php do { ?>
 								<div class="widget_inner">
 									<div class="skills_row odd first">
 										<span class="progressbar">
@@ -474,35 +476,35 @@ $queryString_yetenekler = sprintf("&totalRows_yetenekler=%d%s", $totalRows_yeten
 											</span>
 										</span>
 									</div>
-                   <?php } while ($row_yetenekler = mysql_fetch_assoc($yetenekler)); ?>
-                </div>							
+				                <?php } while ($row_yetenekler = mysql_fetch_assoc($yetenekler)); ?>
+				                </div>							
 							</aside>
 							<!-- /Skills widget -->
 
 							<!-- Skills widget -->
 							<aside class="widget-odd widget widget_skills">
 								<h3 class="widget_title">Graphic Skills (Grafik Becerileri)</h3>
-                <?php do { ?>
+                				<?php do { ?>
 								<div class="widget_inner">
 									<div class="skills_row odd first">
 										<span class="progressbar">
 											<span class="progress" style="background-color: <?php echo $row_sagyetenekler['renkkodu']; ?>;">
 												<span class="caption_wrap">
-                          <span class="caption"><?php echo $row_sagyetenekler['yetenekler']; ?>/</span>
-                          <span class="value"><?php echo $row_sagyetenekler['nekadariyisin']; ?>%</span>
+						                          <span class="caption"><?php echo $row_sagyetenekler['yetenekler']; ?>/</span>
+						                          <span class="value"><?php echo $row_sagyetenekler['nekadariyisin']; ?>%</span>
 												</span>
 											</span>
 										</span>
 									</div>
-                  <?php } while ($row_sagyetenekler = mysql_fetch_assoc($sagyetenekler)); ?>							
+                  				<?php } while ($row_sagyetenekler = mysql_fetch_assoc($sagyetenekler)); ?>
 								</div>
 							</aside>
 							<!-- /Skills widget -->
 
 						</div>
 						<div class="resume_buttons">
-              <a href="#" class="button_link download"><span>İndir</span></a>
-              <a href="#" onClick="return yazdir()" class="button_link"><span>Yazdır</span></a>
+			              <a href="#" class="button_link download"><span>İndir</span></a>
+			              <a href="#" onClick="return yazdir()" class="button_link"><span>Yazdır</span></a>
 						</div>
 					</div><!-- /Resume Section -->
 					
@@ -514,20 +516,20 @@ $queryString_yetenekler = sprintf("&totalRows_yetenekler=%d%s", $totalRows_yeten
 							</ul>
 							<div class="portfolio_items">
 								<!-- Portfolio post -->
-                <?php do { ?>
-                <article class="<?php echo $row_resim['aciklama']; ?>">
-									<div class="post_pic portfolio_post_pic">
-										<a href="img/<?php echo $row_resim['resim']; ?>.jpg" class="w_hover img-link img-wrap" rel="prettyPhoto[gallery]" title="<?php echo $row_resim['altbaslik']; ?>">
-											<span class="overlay"></span>
-											<span class="link-icon"><img src="images/magnify.png" alt="<?php echo $row_resim['ustbaslik']; ?>"></span>
-											<img src="img/<?php echo $row_resim['resim']; ?>.jpg" alt="<?php echo $row_resim['ustbaslik']; ?>" height="400" width="600">
-											<span class="caption">
-												<h5><?php echo $row_resim['altbaslik']; ?></h5>
-												</span>
-										</a>
-									</div>
-								</article>
-                <?php } while ($row_resim = mysql_fetch_assoc($resim)); ?> 
+			                <?php do { ?>
+			                <article class="<?php echo $row_resim['aciklama']; ?>">
+								<div class="post_pic portfolio_post_pic">
+									<a href="img/<?php echo $row_resim['resim']; ?>.jpg" class="w_hover img-link img-wrap" rel="prettyPhoto[gallery]" title="<?php echo $row_resim['altbaslik']; ?>">
+										<span class="overlay"></span>
+										<span class="link-icon"><img src="images/magnify.png" alt="<?php echo $row_resim['ustbaslik']; ?>"></span>
+										<img src="img/<?php echo $row_resim['resim']; ?>.jpg" alt="<?php echo $row_resim['ustbaslik']; ?>" height="400" width="600">
+										<span class="caption">
+											<h5><?php echo $row_resim['altbaslik']; ?></h5>
+											</span>
+									</a>
+								</div>
+							</article>
+			                <?php } while ($row_resim = mysql_fetch_assoc($resim)); ?> 
 
 								<!-- /Portfolio post -->
 								<!-- /Portfolio post -->
@@ -536,6 +538,20 @@ $queryString_yetenekler = sprintf("&totalRows_yetenekler=%d%s", $totalRows_yeten
 							</div>
 						</div>
 					</div><!-- /Portfolio Section -->
+
+					<div id="resume" class="tab_content"><!-- Contacts Section -->
+						<div class="section-header opened">
+							<div class="col1" style="text-align:center;">
+								<div class="phone_num">
+									<span class="icon"></span>
+									<span class="phone"><a href="tel" style="text-decoration:none;"><?php echo $row_ayarlar['telefonnumarasi']; ?></a></span>
+									<p><a href="mailto:<?php echo $row_ayarlar['emailadresi']; ?>"><?php echo $row_ayarlar['emailadresi']; ?></a></p>
+									<p><a href="<?php echo $row_ayarlar['siteadresi']; ?>"><?php echo $row_ayarlar['siteadresi']; ?></a></p>
+								</div>
+							</div>
+						</div>
+					</div><!-- /Contacts Section -->
+
 				</div>
 			</div><!-- /Main -->
 			<footer id="footer">
