@@ -4,4 +4,4 @@
 <p>Şifre:12345</p>
  
 
-<img src="http://okandiyebiri.com/wp-content/uploads/2014/06/kisisel-site-scripti.png" alt="Kişisel site scripti" width="800" height="auto" />
+<img src="http://okandiyebiri.com/wp-content/uploads/2014/06/kisisel-site-scripti.png" alt="Kişisel site scripti" width="888" height="auto" />
