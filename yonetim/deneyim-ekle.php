@@ -214,12 +214,10 @@ $totalRows_deneyimekle = mysql_num_rows($deneyimekle);
         <div class="panel panel-default">
           <div class="panel-heading">Bu Deneyiminiz Hakkında Açıklama Yazın</div>
           <div class="panel-body">
-                        <tr valign="baseline">
-          <td colspan="2" align="right" nowrap="nowrap"><input type="submit" value="Kayıt Ekle" /></td>
-          </tr>
         <tr valign="baseline">
           <td colspan="2" align="center" nowrap="nowrap"><textarea class="ckeditor" name="aciklama" cols="32"></textarea></td>
         </tr>
+        </br><input type="submit" class="btn btn-info pull-right" value="Deneyimi Ekle" />
           </div>
         </div>
 	</div>
