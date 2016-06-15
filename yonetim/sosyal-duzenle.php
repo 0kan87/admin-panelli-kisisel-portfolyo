@@ -201,24 +201,12 @@ $totalRows_sosyalduzenle = mysql_num_rows($sosyalduzenle);
 						</td>
 					</tr>
 					<tr>
-						<td>
-							İkon Rengi
-						</td>
-						<td>
-						<div class="col-md-6">
-							<input type="color" name="renk" value="<?php echo htmlentities($row_sosyalduzenle['renk'], ENT_COMPAT, 'utf-8'); ?>"/>
-						</div>
-						</td>
+						<td>İkon Rengi</td>
+						<td><div class="col-md-3"><input type="color" class="form-control" name="renk" value="<?php echo htmlentities($row_sosyalduzenle['renk'], ENT_COMPAT, 'utf-8'); ?>"/></div></td>
 					</tr>
 					<tr>
-						<td>
-							
-						</td>
-						<td>
-						<div class="col-md-6">
-							<input type="submit" class="btn btn-info" value="Linki Güncelle" />
-						</div>
-						</td>
+						<td></td>
+						<td><div class="col-md-6"><input type="submit" class="btn btn-info" value="Linki Güncelle" /></div></td>
 					</tr>
 				</tbody>
 			</table>
