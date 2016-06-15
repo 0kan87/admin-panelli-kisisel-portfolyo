@@ -5,14 +5,12 @@ if (!isset($_SESSION)) {
   session_start();
 }
 
-// ** Logout the current user. **
 $logoutAction = $_SERVER['PHP_SELF']."?doLogout=true";
 if ((isset($_SERVER['QUERY_STRING'])) && ($_SERVER['QUERY_STRING'] != "")){
   $logoutAction .="&". htmlentities($_SERVER['QUERY_STRING']);
 }
 
 if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
-  //to fully log out a visitor we need to clear the session varialbles
   $_SESSION['MM_Username'] = NULL;
   $_SESSION['MM_UserGroup'] = NULL;
   $_SESSION['PrevUrl'] = NULL;
@@ -34,22 +32,15 @@ if (!isset($_SESSION)) {
 $MM_authorizedUsers = "";
 $MM_donotCheckaccess = "true";
 
-// *** Restrict Access To Page: Grant or deny access to this page
 function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) { 
-  // For security, start by assuming the visitor is NOT authorized. 
   $isValid = False; 
 
-  // When a visitor has logged into this site, the Session variable MM_Username set equal to their username. 
-  // Therefore, we know that a user is NOT logged in if that Session variable is blank. 
   if (!empty($UserName)) { 
-    // Besides being logged in, you may restrict access to only certain users based on an ID established when they login. 
-    // Parse the strings into arrays. 
     $arrUsers = Explode(",", $strUsers); 
     $arrGroups = Explode(",", $strGroups); 
     if (in_array($UserName, $arrUsers)) { 
       $isValid = true; 
     } 
-    // Or, you may restrict access to only certain users based on their username. 
     if (in_array($UserGroup, $arrGroups)) { 
       $isValid = true; 
     } 
@@ -139,17 +130,13 @@ $row_sosyalduzenle = mysql_fetch_assoc($sosyalduzenle);
 $totalRows_sosyalduzenle = mysql_num_rows($sosyalduzenle);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/panel.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!-- InstanceBeginEditable name="doctitle" -->
 <title>Yönetim Paneli</title>
-<!-- InstanceEndEditable -->
 <link href="../SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
-<!-- InstanceBeginEditable name="head" -->
-<!-- InstanceEndEditable -->
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-static-top">
@@ -178,93 +165,127 @@ $totalRows_sosyalduzenle = mysql_num_rows($sosyalduzenle);
 		</div>
 	</div>
     <div class="container">
-<!-- InstanceBeginEditable name="EditRegion1" -->
-    <form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
-      <table>
-        <tr valign="baseline">
-          <td nowrap="nowrap" align="right">Sosyal Link:</td>
-          <td><input type="text" name="link" value="<?php echo htmlentities($row_sosyalduzenle['link'], ENT_COMPAT, 'utf-8'); ?>" size="45" /></td>
-        </tr>
-        <tr valign="baseline">
-          <td nowrap="nowrap" align="right">Örnek:</td>
-          <td>http://facebook.com/kullancamseni</td>
-        </tr>
-        <tr valign="baseline">
-          <td nowrap="nowrap" align="right">Link İconu:</td>
-          <td><select name="icontur">
-            <option value="0" <?php if (!(strcmp(0, htmlentities($row_sosyalduzenle['icontur'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Facebook</option>
-            <option value="1" <?php if (!(strcmp(1, htmlentities($row_sosyalduzenle['icontur'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Twitter</option>
-            <option value="2" <?php if (!(strcmp(2, htmlentities($row_sosyalduzenle['icontur'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Google+</option>
-            <option value="5" <?php if (!(strcmp(5, htmlentities($row_sosyalduzenle['icontur'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Pinterest</option>
-            <option value="6" <?php if (!(strcmp(6, htmlentities($row_sosyalduzenle['icontur'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Vimeo</option>
-            <option value="7" <?php if (!(strcmp(7, htmlentities($row_sosyalduzenle['icontur'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Youtube</option>
-            <option value="l" <?php if (!(strcmp(l, htmlentities($row_sosyalduzenle['icontur'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Skype</option>
-            <option value="p" <?php if (!(strcmp(p, htmlentities($row_sosyalduzenle['icontur'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>İnstagram</option>
-            <option value="4" <?php if (!(strcmp(4, htmlentities($row_sosyalduzenle['icontur'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Linkedin</option>            
-            </select></td>
-        </tr>
-        <tr valign="baseline">
-          <td nowrap="nowrap" align="right">Renk:</td>
-          <td><input type="color" name="renk" value="<?php echo htmlentities($row_sosyalduzenle['renk'], ENT_COMPAT, 'utf-8'); ?>" size="32" /></td>
-        </tr>
-        <tr valign="baseline">
-          <td nowrap="nowrap" align="right">&nbsp;</td>
-          <td><input type="submit" value="Linki Güncelle" /></td>
-        </tr>
-      </table>
-      <table width="100%">
-        <tbody>
-          <tr>
-            <td width="3%" bgcolor="#3B5998">&nbsp;</td>
-            <td width="35%"><strong>Facebook Blue</strong><br />
-              Hex: #3b5998<br />
-              RGB: 59, 89, 152</td>
-            <td width="3%" bgcolor="#517FA4">&nbsp;</td>
-            <td width="59%"><strong>Instagram Blue</strong><br />
-Hex: #517fa4<br />
-RGB: 81, 127, 164<br /></td>
-          </tr>
-          <tr>
-            <td bgcolor="#00ACED">&nbsp;</td>
-            <td><strong>Twitter Blue</strong><br />
-              Hex: #00aced<br />
-              RGB: 0, 172, 237</td>
-            <td bgcolor="#CB2027">&nbsp;</td>
-            <td><strong>Pinterest Red</strong><br />
-Hex: #cb2027<br />
-RGB: 203, 32, 39<br /></td>
-          </tr>
-          <tr>
-            <td bgcolor="#DD4B39">&nbsp;</td>
-            <td><strong>Google+ Red</strong><br />
-              Hex: #dd4b39<br />
-              RGB: 221, 75, 57</td>
-            <td bgcolor="#AAD450">&nbsp;</td>
-            <td><strong>Vimeo Green</strong><br />
-Hex: #aad450<br />
-RGB: 170, 212, 80</td>
-          </tr>
-          <tr>
-            <td bgcolor="#BB0000">&nbsp;</td>
-            <td><strong>YouTube Red</strong><br />
-              Hex: #bb0000<br />
-              RGB: 187, 0, 0</td>
-            <td bgcolor="#007BB6">&nbsp;</td>
-            <td><strong>Linkedin Blue</strong><br />
-              Hex: #007bb6<br />
-              RGB: 0, 123, 182</td>
-          </tr>
-        </tbody>
-      </table>
-      <p>&nbsp;</p>
-      <p>
-        <input type="hidden" name="MM_update" value="form1" />
-        <input type="hidden" name="id" value="<?php echo $row_sosyalduzenle['id']; ?>" />
-      </p>
-    </form>
-    <p>&nbsp;</p>
-    <!-- InstanceEndEditable -->
+    	<form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
+			<table class="table table-responsive">
+				<thead>
+					<tr>
+						<th>
+							Sosyal Link
+						</th>
+						<th>
+						<div class="col-md-12">
+							<input type="url" class="form-control" name="link" value="<?php echo htmlentities($row_sosyalduzenle['link'], ENT_COMPAT, 'utf-8'); ?>"/>
+						</div>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							Link İkonu
+						</td>
+						<td>
+							<div class="col-md-3">
+								<select name="icontur" class="form-control">
+					            <option value="0" <?php if (!@(strcmp(0, htmlentities($row_sosyalduzenle['icontur'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Facebook</option>
+					            <option value="1" <?php if (!@(strcmp(1, htmlentities($row_sosyalduzenle['icontur'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Twitter</option>
+					            <option value="2" <?php if (!@(strcmp(2, htmlentities($row_sosyalduzenle['icontur'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Google+</option>
+					            <option value="5" <?php if (!@(strcmp(5, htmlentities($row_sosyalduzenle['icontur'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Pinterest</option>
+					            <option value="6" <?php if (!@(strcmp(6, htmlentities($row_sosyalduzenle['icontur'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Vimeo</option>
+					            <option value="7" <?php if (!@(strcmp(7, htmlentities($row_sosyalduzenle['icontur'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Youtube</option>
+					            <option value="l" <?php if (!@(strcmp(l, htmlentities($row_sosyalduzenle['icontur'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Skype</option>
+					            <option value="p" <?php if (!@(strcmp(p, htmlentities($row_sosyalduzenle['icontur'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>İnstagram</option>
+					            <option value="4" <?php if (!@(strcmp(4, htmlentities($row_sosyalduzenle['icontur'], ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>Linkedin</option>            
+					            </select>
+					           </div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							İkon Rengi
+						</td>
+						<td>
+						<div class="col-md-6">
+							<input type="color" name="renk" value="<?php echo htmlentities($row_sosyalduzenle['renk'], ENT_COMPAT, 'utf-8'); ?>"/>
+						</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							
+						</td>
+						<td>
+						<div class="col-md-6">
+							<input type="submit" class="btn btn-info" value="Linki Güncelle" />
+						</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+	        <input type="hidden" name="MM_update" value="form1" />
+	        <input type="hidden" name="id" value="<?php echo $row_sosyalduzenle['id']; ?>" />
+	    </form>
 
+		<table class="table table-bordered table-hover">
+		  <thead>
+		    <tr>
+		      <th>Renk</th>
+		      <th>Renk Adı</th>
+		      <th>#Hex</th>
+		      <th>RGB</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <th scope="row" bgcolor="#3b5998"></th>
+		      <td>Facebook Blue</td>
+		      <td>#3b5998</td>
+		      <td>59,89,152</td>
+		    </tr>
+		    <tr>
+		      <th scope="row" bgcolor="#00aced"></th>
+		      <td>Twitter Blue</td>
+		      <td>#00aced</td>
+		      <td>0,172,237</td>
+		    </tr>
+		    <tr>
+		      <th scope="row" bgcolor="#dd4b39"></th>
+		      <td>Google+ Red</td>
+		      <td>#dd4b39</td>
+		      <td>221,75,57</td>
+		    </tr>
+		    <tr>
+		      <th scope="row" bgcolor="#bb0000"></th>
+		      <td>YouTube Red</td>
+		      <td>#bb0000</td>
+		      <td>187,0,0</td>   
+		    </tr>
+		    <tr>
+		      <th scope="row" bgcolor="#517fa4"></th>
+		      <td>Instagram Blue</td>
+		      <td>#517fa4</td>
+		      <td>81,127,164</td>
+		    </tr>
+		    <tr>
+		      <th scope="row" bgcolor="#cb2027"></th>
+		      <td>Pinterest Red</td>
+		      <td>#cb2027</td>
+		      <td>203,32,39</td>
+		    </tr>
+		    <tr>
+		      <th scope="row" bgcolor="#aad450"></th>
+		      <td>Vimeo Green</td>
+		      <td>#aad450</td>
+		      <td>170,212,80</td>
+		    </tr>
+		    <tr>
+		      <th scope="row" bgcolor="#007bb6"></th>
+		      <td>Linkedin Blue</td>
+		      <td>#007bb6</td>
+		      <td>0,123,182</td>   
+		    </tr>    
+		  </tbody>
+		</table>
     </div>
     <div class="container">
            <div class="alert alert-warning alert-dismissible" role="alert">
