@@ -1,18 +1,15 @@
 <?php require_once('../Connections/baglan.php'); ?>
 <?php
-//initialize the session
 if (!isset($_SESSION)) {
   session_start();
 }
 
-// ** Logout the current user. **
 $logoutAction = $_SERVER['PHP_SELF']."?doLogout=true";
 if ((isset($_SERVER['QUERY_STRING'])) && ($_SERVER['QUERY_STRING'] != "")){
   $logoutAction .="&". htmlentities($_SERVER['QUERY_STRING']);
 }
 
 if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
-  //to fully log out a visitor we need to clear the session varialbles
   $_SESSION['MM_Username'] = NULL;
   $_SESSION['MM_UserGroup'] = NULL;
   $_SESSION['PrevUrl'] = NULL;
@@ -34,22 +31,15 @@ if (!isset($_SESSION)) {
 $MM_authorizedUsers = "";
 $MM_donotCheckaccess = "true";
 
-// *** Restrict Access To Page: Grant or deny access to this page
 function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) { 
-  // For security, start by assuming the visitor is NOT authorized. 
   $isValid = False; 
 
-  // When a visitor has logged into this site, the Session variable MM_Username set equal to their username. 
-  // Therefore, we know that a user is NOT logged in if that Session variable is blank. 
   if (!empty($UserName)) { 
-    // Besides being logged in, you may restrict access to only certain users based on an ID established when they login. 
-    // Parse the strings into arrays. 
     $arrUsers = Explode(",", $strUsers); 
     $arrGroups = Explode(",", $strGroups); 
     if (in_array($UserName, $arrUsers)) { 
       $isValid = true; 
     } 
-    // Or, you may restrict access to only certain users based on their username. 
     if (in_array($UserGroup, $arrGroups)) { 
       $isValid = true; 
     } 
@@ -199,17 +189,13 @@ if (!empty($_SERVER['QUERY_STRING'])) {
 $queryString_yetenekler = sprintf("&totalRows_yetenekler=%d%s", $totalRows_yetenekler, $queryString_yetenekler);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/panel.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!-- InstanceBeginEditable name="doctitle" -->
 <title>Yönetim Paneli</title>
-<!-- InstanceEndEditable -->
 <link href="../SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
-<!-- InstanceBeginEditable name="head" -->
-<!-- InstanceEndEditable -->
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-static-top">
@@ -237,116 +223,117 @@ $queryString_yetenekler = sprintf("&totalRows_yetenekler=%d%s", $totalRows_yeten
 			</div>
 		</div>
 	</div>
-    <div class="container">
-<!-- InstanceBeginEditable name="EditRegion1" -->
-<div class="col-xs-12 col-sm-6 col-md-6">
-<div class="panel panel-default">
-<div class="btn-group btn pull-right">
-  <button type="button" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-    Yeni Ekle <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="yetenek-ekle.php">Sol Bölüme Ekle</a></li>
-    <li><a href="sag-yetenek-ekle.php">Sağ Bölüme Ekle</a></li>
-  </ul>
-</div>
-  <!-- Default panel contents -->
-  <div class="panel-heading">Yetenekler Sol Bölüm</div>
-  <!-- Single button -->
-
-  <!-- Table -->
-  <table class="table">
-        <td width="363">Yetenek</td>
-        <td colspan="3">Yüzdesel Değer</td>
-        </tr>
-         <?php do { ?>
-        <tr bgcolor="<?php echo $row_yetenekler['renkkodu']; ?>" style="color: white">
-          <td> <?php echo $row_yetenekler['yetenekler']; ?></td>
-          <td width="358"><?php echo $row_yetenekler['nekadariyisin']; ?></td>
-          <td width="16"><a href="yetenek-duzenle.php?id=<?php echo $row_yetenekler['id']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
-          <td width="16"><a href="yetenek-sil.php?id=<?php echo $row_yetenekler['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
-        </tr>
-        <?php } while ($row_yetenekler = mysql_fetch_assoc($yetenekler)); ?>
-  </table>
-</div>
-</div>
-
-    <table border="0">
-      <tr>
-        <td><?php if ($pageNum_yetenekler > 0) { // Show if not first page ?>
-            <a href="<?php printf("%s?pageNum_yetenekler=%d%s", $currentPage, 0, $queryString_yetenekler); ?>">&#304;lk</a>
-          <?php } // Show if not first page ?></td>
-        <td><?php if ($pageNum_yetenekler > 0) { // Show if not first page ?>
-            <a href="<?php printf("%s?pageNum_yetenekler=%d%s", $currentPage, max(0, $pageNum_yetenekler - 1), $queryString_yetenekler); ?>">&Ouml;nceki</a>
-          <?php } // Show if not first page ?></td>
-        <td><?php if ($pageNum_yetenekler < $totalPages_yetenekler) { // Show if not last page ?>
-            <a href="<?php printf("%s?pageNum_yetenekler=%d%s", $currentPage, min($totalPages_yetenekler, $pageNum_yetenekler + 1), $queryString_yetenekler); ?>">Sonraki</a>
-          <?php } // Show if not last page ?></td>
-        <td><?php if ($pageNum_yetenekler < $totalPages_yetenekler) { // Show if not last page ?>
-            <a href="<?php printf("%s?pageNum_yetenekler=%d%s", $currentPage, $totalPages_yetenekler, $queryString_yetenekler); ?>">Son</a>
-          <?php } // Show if not last page ?></td>
-      </tr>
-  </table>
-<div class="col-xs-12 col-sm-6 col-md-6">
-<div class="panel panel-default">
-  <!-- Default panel contents -->
-  <div class="panel-heading">Yetenekler Sağ Bölüm</div>
-
-  <!-- Table -->
-  <table class="table">
-        <td width="363">Yetenek</td>
-        <td colspan="3">Yüzdesel Değer</td>
-        </tr>
-      <?php do { ?>
-        <tr bgcolor="<?php echo $row_sagyetenekler['renkkodu']; ?>" style="color: white">
-          <td><?php echo $row_sagyetenekler['yetenekler']; ?></td>
-          <td width="358"><?php echo $row_sagyetenekler['nekadariyisin']; ?></td>
-          <td width="16"><a href="sag-yetenek-duzenle.php?id=<?php echo $row_sagyetenekler['id']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
-          <td width="16"><a href="sag-yetenek-sil.php?id=<?php echo $row_sagyetenekler['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
-        </tr>
-        <?php } while ($row_sagyetenekler = mysql_fetch_assoc($sagyetenekler)); ?>
-  </table>
-</div>
-</div>
-    <table border="0">
-      <tr>
-        <td><?php if ($pageNum_sagyetenekler > 0) { // Show if not first page ?>
-            <a href="<?php printf("%s?pageNum_sagyetenekler=%d%s", $currentPage, 0, $queryString_sagyetenekler); ?>">&#304;lk</a>
-          <?php } // Show if not first page ?></td>
-        <td><?php if ($pageNum_sagyetenekler > 0) { // Show if not first page ?>
-            <a href="<?php printf("%s?pageNum_sagyetenekler=%d%s", $currentPage, max(0, $pageNum_sagyetenekler - 1), $queryString_sagyetenekler); ?>">&Ouml;nceki</a>
-          <?php } // Show if not first page ?></td>
-        <td><?php if ($pageNum_sagyetenekler < $totalPages_sagyetenekler) { // Show if not last page ?>
-            <a href="<?php printf("%s?pageNum_sagyetenekler=%d%s", $currentPage, min($totalPages_sagyetenekler, $pageNum_sagyetenekler + 1), $queryString_sagyetenekler); ?>">Sonraki</a>
-          <?php } // Show if not last page ?></td>
-        <td><?php if ($pageNum_sagyetenekler < $totalPages_sagyetenekler) { // Show if not last page ?>
-            <a href="<?php printf("%s?pageNum_sagyetenekler=%d%s", $currentPage, $totalPages_sagyetenekler, $queryString_sagyetenekler); ?>">Son</a>
-          <?php } // Show if not last page ?></td>
-      </tr>
-  </table>
-    </p>
-    <!-- InstanceEndEditable -->
-
+  <div class="container">
+    <div class="col-xs-12 col-sm-6 col-md-6">
+      <div class="panel panel-default">
+        <div class="btn-group btn pull-right">
+          <button type="button" data-toggle="dropdown">
+            Yeni Ekle <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="yetenek-ekle.php">Sol Bölüme Ekle</a></li>
+            <li><a href="sag-yetenek-ekle.php">Sağ Bölüme Ekle</a></li>
+          </ul>
+        </div>
+        <div class="panel-heading">Yetenekler Sol Bölüm</div>
+          <table class="table table-bordered table-hover table-condensed table-responsive">
+            <thead>
+              <tr>
+                <th>Renk</th>
+                <th>Yetenekler</th>
+                <th>Yüzde</th>
+                <th>Düzenle</th>
+                <th>Sil</th>
+              </tr>
+            </thead>
+            <?php do { ?>
+            <tbody>
+              <tr>
+                <td width="5" bgcolor="<?php echo $row_yetenekler['renkkodu']; ?>"></td>
+                <td><?php echo $row_yetenekler['yetenekler']; ?></td>
+                <td><?php echo $row_yetenekler['nekadariyisin']; ?></td>
+                <td width="4"><center><a href="yetenek-duzenle.php?id=<?php echo $row_yetenekler['id']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></center></td>
+                <td width="4"><center><a href="yetenek-sil.php?id=<?php echo $row_yetenekler['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center></td>
+              </tr>
+            </tbody>
+            <?php } while ($row_yetenekler = mysql_fetch_assoc($yetenekler)); ?>
+          </table>
+      </div>
     </div>
-    <div class="container">
-           <div class="alert alert-warning alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          Oluşabilecek her hata için lütfen <a href="http://okandiyebiri.com/admin-panelli-kisisel-site-scripti/"><strong>destek</strong></a> sitesini ziyaret edin.
-          </div>
-          </br></br>
-     </div>
-    <div class="navbar navbar-default navbar-fixed-bottom">
-		<div class="container">
-			<p class="navbar-text pull-left">Okan IŞIK</p>
-			<a href="http://okandiyebiri.com" class="navbar-btn btn-info btn pull-right">okandiyebiri.com</a>
-		</div>
-	</div>
+
+    <table border="0">
+      <tr>
+        <td><?php if ($pageNum_yetenekler > 0) { ?><a href="<?php printf("%s?pageNum_yetenekler=%d%s", $currentPage, 0, $queryString_yetenekler); ?>">&#304;lk</a><?php } ?></td>
+        <td><?php if ($pageNum_yetenekler > 0) { ?><a href="<?php printf("%s?pageNum_yetenekler=%d%s", $currentPage, max(0, $pageNum_yetenekler - 1), $queryString_yetenekler); ?>">&Ouml;nceki</a><?php } ?></td>
+        <td><?php if ($pageNum_yetenekler < $totalPages_yetenekler) { ?><a href="<?php printf("%s?pageNum_yetenekler=%d%s", $currentPage, min($totalPages_yetenekler, $pageNum_yetenekler + 1), $queryString_yetenekler); ?>">Sonraki</a><?php } ?></td>
+        <td><?php if ($pageNum_yetenekler < $totalPages_yetenekler) { ?><a href="<?php printf("%s?pageNum_yetenekler=%d%s", $currentPage, $totalPages_yetenekler, $queryString_yetenekler); ?>">Son</a><?php } ?></td>
+      </tr>
+    </table>
+
+    <div class="col-xs-12 col-sm-6 col-md-6">
+      <div class="panel panel-default">
+      <div class="panel-heading">Yetenekler Sağ Bölüm</div>
+        <table class="table table-bordered table-hover table-condensed table-responsive">
+          <thead>
+            <tr>
+              <th>Renk</th>
+              <th>Yetenekler</th>
+              <th>Yüzde</th>
+              <th>Düzenle</th>
+              <th>Sil</th>
+            </tr>
+          </thead>
+          <?php do { ?>
+          <tbody>
+            <tr>
+              <td width="5" bgcolor="<?php echo $row_sagyetenekler['renkkodu']; ?>"></td>
+              <td><?php echo $row_sagyetenekler['yetenekler']; ?></td>
+              <td><?php echo $row_sagyetenekler['nekadariyisin']; ?></td>
+              <td width="4"><center><a href="sag-yetenek-duzenle.php?id=<?php echo $row_sagyetenekler['id']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></center></td>
+              <td width="4"><center><a href="sag-yetenek-sil.php?id=<?php echo $row_sagyetenekler['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center></td>
+            </tr>
+          </tbody>
+          <?php } while ($row_sagyetenekler = mysql_fetch_assoc($sagyetenekler)); ?>
+        </table>
+      </div>
+    </div>
+
+    <table border="0">
+          <tr>
+            <td><?php if ($pageNum_sagyetenekler > 0) {  ?>
+                <a href="<?php printf("%s?pageNum_sagyetenekler=%d%s", $currentPage, 0, $queryString_sagyetenekler); ?>">&#304;lk</a>
+              <?php } // Show if not first page ?></td>
+            <td><?php if ($pageNum_sagyetenekler > 0) {  ?>
+                <a href="<?php printf("%s?pageNum_sagyetenekler=%d%s", $currentPage, max(0, $pageNum_sagyetenekler - 1), $queryString_sagyetenekler); ?>">&Ouml;nceki</a>
+              <?php }?></td>
+            <td><?php if ($pageNum_sagyetenekler < $totalPages_sagyetenekler) { ?>
+                <a href="<?php printf("%s?pageNum_sagyetenekler=%d%s", $currentPage, min($totalPages_sagyetenekler, $pageNum_sagyetenekler + 1), $queryString_sagyetenekler); ?>">Sonraki</a>
+              <?php }?></td>
+            <td><?php if ($pageNum_sagyetenekler < $totalPages_sagyetenekler) {  ?>
+                <a href="<?php printf("%s?pageNum_sagyetenekler=%d%s", $currentPage, $totalPages_sagyetenekler, $queryString_sagyetenekler); ?>">Son</a>
+              <?php }?></td>
+          </tr>
+    </table>
+</div>
+
+<div class="container">
+       <div class="alert alert-warning alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      Oluşabilecek her hata için lütfen <a href="http://okandiyebiri.com/admin-panelli-kisisel-site-scripti/"><strong>destek</strong></a> sitesini ziyaret edin.
+      </div>
+      </br></br>
+ </div>
+<div class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container">
+  	<p class="navbar-text pull-left">Okan IŞIK</p>
+  	<a href="http://okandiyebiri.com" class="navbar-btn btn-info btn pull-right">okandiyebiri.com</a>
+  </div>
+</div>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 </body>
-<!-- InstanceEnd --></html>
+</html>
 <?php
 mysql_free_result($yetenekler);
-
 mysql_free_result($sagyetenekler);
 ?>
