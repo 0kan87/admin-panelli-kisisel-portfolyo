@@ -25,6 +25,7 @@ h6{font-size:14px;line-height:17px;margin-bottom:10px;}
 .extra_wrap{overflow:hidden;}
 input[type="text"],
 input[type="search"],
+input[type="date"],
 input[type="password"],
 input[type="url"],
 textarea{line-height:15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;padding:8px 10px 8px;border:2px solid #46b8da;border-radius:2px;background:#f5f5f5;}

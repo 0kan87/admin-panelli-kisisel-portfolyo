@@ -1,18 +1,15 @@
 <?php require_once('../Connections/baglan.php'); ?>
 <?php
-//initialize the session
 if (!isset($_SESSION)) {
   session_start();
 }
 
-// ** Logout the current user. **
 $logoutAction = $_SERVER['PHP_SELF']."?doLogout=true";
 if ((isset($_SERVER['QUERY_STRING'])) && ($_SERVER['QUERY_STRING'] != "")){
   $logoutAction .="&". htmlentities($_SERVER['QUERY_STRING']);
 }
 
 if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
-  //to fully log out a visitor we need to clear the session varialbles
   $_SESSION['MM_Username'] = NULL;
   $_SESSION['MM_UserGroup'] = NULL;
   $_SESSION['PrevUrl'] = NULL;
@@ -34,22 +31,15 @@ if (!isset($_SESSION)) {
 $MM_authorizedUsers = "";
 $MM_donotCheckaccess = "true";
 
-// *** Restrict Access To Page: Grant or deny access to this page
 function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) { 
-  // For security, start by assuming the visitor is NOT authorized. 
   $isValid = False; 
 
-  // When a visitor has logged into this site, the Session variable MM_Username set equal to their username. 
-  // Therefore, we know that a user is NOT logged in if that Session variable is blank. 
   if (!empty($UserName)) { 
-    // Besides being logged in, you may restrict access to only certain users based on an ID established when they login. 
-    // Parse the strings into arrays. 
     $arrUsers = Explode(",", $strUsers); 
     $arrGroups = Explode(",", $strGroups); 
     if (in_array($UserName, $arrUsers)) { 
       $isValid = true; 
     } 
-    // Or, you may restrict access to only certain users based on their username. 
     if (in_array($UserGroup, $arrGroups)) { 
       $isValid = true; 
     } 
@@ -111,12 +101,12 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
   $insertSQL = sprintf("INSERT INTO deneyimler (id, baslamatarihi, ayrilmatarihi, calistigiyer, gorevi, aciklama) VALUES (%s, %s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['id'], "int"),
-                       GetSQLValueString($_POST['baslamatarihi'], "date"),
-                       GetSQLValueString($_POST['ayrilmatarihi'], "date"),
-                       GetSQLValueString($_POST['calistigiyer'], "text"),
-                       GetSQLValueString($_POST['gorevi'], "text"),
-                       GetSQLValueString($_POST['aciklama'], "text"));
+     GetSQLValueString($_POST['id'], "int"),
+     GetSQLValueString($_POST['baslamatarihi'], "date"),
+     GetSQLValueString($_POST['ayrilmatarihi'], "date"),
+     GetSQLValueString($_POST['calistigiyer'], "text"),
+     GetSQLValueString($_POST['gorevi'], "text"),
+     GetSQLValueString($_POST['aciklama'], "text"));
 
   mysql_select_db($database_baglan, $baglan);
   $Result1 = mysql_query($insertSQL, $baglan) or die(mysql_error());
@@ -136,18 +126,13 @@ $row_deneyimekle = mysql_fetch_assoc($deneyimekle);
 $totalRows_deneyimekle = mysql_num_rows($deneyimekle);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/panel.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!-- InstanceBeginEditable name="doctitle" -->
 <title>Yönetim Paneli</title>
 <script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
-<!-- InstanceEndEditable -->
-<link href="../SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
-<!-- InstanceBeginEditable name="head" -->
-<!-- InstanceEndEditable -->
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-static-top">
@@ -162,78 +147,108 @@ $totalRows_deneyimekle = mysql_num_rows($deneyimekle);
 			<div class="collapse navbar-collapse navbarSec">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="index.php">Anasayfa</a></li>
-                    <li><a href="ayarlar.php">Ayarlar</a></li>
-                    <li><a href="profil-resmi-ekle.php">Profil Resmi</a></li>
-                    <li><a href="galeri.php">Resim Galerisi</a></li>
-                    <li><a href="deneyimler.php">Deneyimler</a></li>
-                    <li><a href="egitim.php">Eğitimler</a></li>
-                    <li><a href="sosyal.php">Sosyal Linkler</a></li>
-                    <li><a href="yetenekler.php">Yetenekler</a></li>
-                    <li><a href="../index.php">Site Anasayfa</a></li>
+            <li><a href="ayarlar.php">Ayarlar</a></li>
+            <li><a href="profil-resmi-ekle.php">Profil Resmi</a></li>
+            <li><a href="galeri.php">Resim Galerisi</a></li>
+            <li><a href="deneyimler.php">Deneyimler</a></li>
+            <li><a href="egitim.php">Eğitimler</a></li>
+            <li><a href="sosyal.php">Sosyal Linkler</a></li>
+            <li><a href="yetenekler.php">Yetenekler</a></li>
+            <li><a href="../index.php">Site Anasayfa</a></li>
 					<li><a href="<?php echo $logoutAction ?>">Çıkış</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-    <div class="container">
-<!-- InstanceBeginEditable name="EditRegion1" -->
-<form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
-    <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">İşe Başlama Tarihi</div>
-          <div class="panel-body">
-                <input type="date" name="baslamatarihi" value="" size="32" />
-          </div>
-        </div>
-	</div>
-    <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">İşten Ayrılma Tarihi</div>
-          <div class="panel-body">
-                <input type="date" name="ayrilmatarihi" value="" size="32" />
-          </div>
-        </div>
-	</div>
-    <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">Çalıştığın Yer</div>
-          <div class="panel-body">
-                <input type="text" name="calistigiyer" value=""/>
-          </div>
-        </div>
-	</div>
-    <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">Ne İş Yaptığın</div>
-          <div class="panel-body">
-                <input type="text" name="gorevi" value=""/>
-          </div>
-        </div>
-	</div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">Bu Deneyiminiz Hakkında Açıklama Yazın</div>
-          <div class="panel-body">
-        <tr valign="baseline">
-          <td colspan="2" align="center" nowrap="nowrap"><textarea class="ckeditor" name="aciklama" cols="32"></textarea></td>
-        </tr>
-        </br><input type="submit" class="btn btn-info pull-right" value="Deneyimi Ekle" />
-          </div>
-        </div>
-	</div>
-      <input type="hidden" name="MM_insert" value="form1" />
-    </form>
-    <!-- InstanceEndEditable -->
+  <div class="container">
+    <form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
+      <div class="col-xs-12 col-sm-6 col-md-3">
+          <table class="table table-bordered table-hover table-responsive">
+            <thead bgcolor="#46b8da" style="color:white;">
+              <tr>
+                <th>İşe Başlama Tarihi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="date" class="form-control" name="baslamatarihi" value="" size="32" required /></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
 
+      <div class="col-xs-12 col-sm-6 col-md-3">
+          <table class="table table-bordered table-hover table-responsive">
+            <thead bgcolor="#46b8da" style="color:white;">
+              <tr>
+                <th>İşten Ayrılma Tarihi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="date" class="form-control" name="ayrilmatarihi" value="" size="32" required /></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3">
+          <table class="table table-bordered table-hover table-responsive">
+            <thead bgcolor="#46b8da" style="color:white;">
+              <tr>
+                <th>Çalıştığın Yer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" class="form-control" name="calistigiyer" value="" size="32" required /></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3">
+          <table class="table table-bordered table-hover table-responsive">
+            <thead bgcolor="#46b8da" style="color:white;">
+              <tr>
+                <th>İş Yerindeki Pozisyonun</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" class="form-control" name="gorevi" value="" size="32" required /></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <table class="table table-bordered table-hover table-responsive">
+          <thead bgcolor="#46b8da" style="color:white;">
+            <tr>
+              <th>Bu Deneyiminiz Hakkında Açıklama Yazın</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><textarea class="ckeditor" name="aciklama"></textarea></td>
+            </tr>
+          </tbody>
+        </table>
+        <input type="submit" class="btn btn-warning pull-right" value="Deneyimi Ekle" />
+        <input type="hidden" name="MM_insert" value="form1" />  
+      </div>
+    </form>
+  </div>
+  <br/>
+  <div class="container">
+    <div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    Oluşabilecek her hata için lütfen <a href="http://okandiyebiri.com/admin-panelli-kisisel-site-scripti/"><strong>destek</strong></a> sitesini ziyaret edin.
     </div>
-    <div class="container">
-           <div class="alert alert-warning alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          Oluşabilecek her hata için lütfen <a href="http://okandiyebiri.com/admin-panelli-kisisel-site-scripti/"><strong>destek</strong></a> sitesini ziyaret edin.
-          </div>
-          </br></br>
-     </div>
-    <div class="navbar navbar-default navbar-fixed-bottom">
+    </br></br>
+  </div>
+  <div class="navbar navbar-default navbar-fixed-bottom">
 		<div class="container">
 			<p class="navbar-text pull-left">Okan IŞIK</p>
 			<a href="http://okandiyebiri.com" class="navbar-btn btn-info btn pull-right">okandiyebiri.com</a>
@@ -242,7 +257,7 @@ $totalRows_deneyimekle = mysql_num_rows($deneyimekle);
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 </body>
-<!-- InstanceEnd --></html>
+</html>
 <?php
 mysql_free_result($deneyimekle);
 ?>

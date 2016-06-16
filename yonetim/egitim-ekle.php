@@ -161,73 +161,104 @@ $totalRows_egitimekle = mysql_num_rows($egitimekle);
 			</div>
 		</div>
 	</div>
-    <div class="container">
-    <form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
-        <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">Başlama Tarihi</div>
-          <div class="panel-body">
-            <input type="date" name="baslamatarihi" value=""/>
-          </div>
-        </div>
-	</div>
-    <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">Bitirme Tarihi</div>
-          <div class="panel-body">
-            <input type="date" name="bitirmetarihi" value=""/>
-          </div>
-        </div>
-	</div>
-    <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">Eğitim Türü</div>
-          <div class="panel-body">
-            <input type="text" name="okulduzeyi" value=""/>
-          </div>
-        </div>
-	</div>
-    <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">Eğitim Bölümü/Eylem</div>
-          <div class="panel-body">
-            <input type="text" name="bolum" value=""/>
-          </div>
-        </div>
-	</div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">Bu Eğitiminiz Hakkında Açıklama Yazın</div>
-          <div class="panel-body">
-        <tr valign="baseline">
-          <td colspan="2" align="center" nowrap="nowrap"><textarea class="ckeditor" name="aciklama" cols="32"></textarea></td>
-        </tr>
-        </br><input type="submit" class="btn btn-info pull-right" value="Eğitim Ekle" />
-          </div>
-        </div>
-	</div>
-      <input type="hidden" name="MM_insert" value="form1" />
-    </form>
-    <!-- InstanceEndEditable -->
 
+  <div class="container">
+    <form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <table class="table table-bordered table-hover table-responsive">
+          <thead bgcolor="#46b8da" style="color:white;">
+            <tr>
+              <th>Eğitime Başlama Tarihi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="date" class="form-control" name="baslamatarihi" value="" size="32" required /></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <table class="table table-bordered table-hover table-responsive">
+          <thead bgcolor="#46b8da" style="color:white;">
+            <tr>
+              <th>Eğitimi Bitirme Tarihi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="date" class="form-control" name="bitirmetarihi" value="" size="32" required /></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <table class="table table-bordered table-hover table-responsive">
+          <thead bgcolor="#46b8da" style="color:white;">
+            <tr>
+              <th>Eğitim Türü</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" class="form-control" name="okulduzeyi" value="" size="32" required /></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <table class="table table-bordered table-hover table-responsive">
+          <thead bgcolor="#46b8da" style="color:white;">
+            <tr>
+              <th>Eğitim Bölümü/Eylem</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" class="form-control" name="bolum" value="" size="32" required /></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <table class="table table-bordered table-hover table-responsive">
+          <thead bgcolor="#46b8da" style="color:white;">
+            <tr>
+              <th>Bu Eğitiminiz Hakkında Açıklama Yazın</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><textarea class="ckeditor" name="aciklama"></textarea></td>
+            </tr>
+          </tbody>
+        </table>
+          <input type="hidden" name="MM_insert" value="form1" />
+          <input type="submit" class="btn btn-warning pull-right" value="Eğitim Ekle" />
+      </div>
+    </form>
+  </div>
+  </br>
+  <div class="container">
+    <div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    Oluşabilecek her hata için lütfen <a href="http://okandiyebiri.com/admin-panelli-kisisel-site-scripti/"><strong>destek</strong></a> sitesini ziyaret edin.
     </div>
-    <div class="container">
-           <div class="alert alert-warning alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          Oluşabilecek her hata için lütfen <a href="http://okandiyebiri.com/admin-panelli-kisisel-site-scripti/"><strong>destek</strong></a> sitesini ziyaret edin.
-          </div>
-          </br></br>
-     </div>
+    </br></br>
+   </div>
     <div class="navbar navbar-default navbar-fixed-bottom">
-		<div class="container">
-			<p class="navbar-text pull-left">Okan IŞIK</p>
-			<a href="http://okandiyebiri.com" class="navbar-btn btn-info btn pull-right">okandiyebiri.com</a>
-		</div>
+  		<div class="container">
+  			<p class="navbar-text pull-left">Okan IŞIK</p>
+  			<a href="http://okandiyebiri.com" class="navbar-btn btn-info btn pull-right">okandiyebiri.com</a>
+  		</div>
 	</div>
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
 </body>
-<!-- InstanceEnd --></html>
+</html>
 <?php
 mysql_free_result($egitimekle);
 ?>

@@ -165,63 +165,94 @@ $totalRows_egitimduzenle = mysql_num_rows($egitimduzenle);
 			</div>
 		</div>
 	</div>
-    <div class="container">
-    <form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
-    <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">Başlama Tarihi</div>
-          <div class="panel-body">
-                <input type="date" name="baslamatarihi" value="<?php echo htmlentities($row_egitimduzenle['baslamatarihi'], ENT_COMPAT, 'utf-8'); ?>"/>
-          </div>
-        </div>
-	</div>
-    <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">Bitirme Tarihi</div>
-          <div class="panel-body">
-                <input type="date" name="bitirmetarihi" value="<?php echo htmlentities($row_egitimduzenle['bitirmetarihi'], ENT_COMPAT, 'utf-8'); ?>"/>
-          </div>
-        </div>
-	</div>
-    <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">Eğitim Türü</div>
-          <div class="panel-body">
-                <input type="text" name="okulduzeyi" value="<?php echo htmlentities($row_egitimduzenle['okulduzeyi'], ENT_COMPAT, 'utf-8'); ?>"/>
-          </div>
-        </div>
-	</div>
-    <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">Eğitim Bölümü/Eylem</div>
-          <div class="panel-body">
-                <input type="text" name="bolum" value="<?php echo htmlentities($row_egitimduzenle['bolum'], ENT_COMPAT, 'utf-8'); ?>"/>
-          </div>
-        </div>
-	</div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">Bu Eğitiminiz Hakkında Açıklama Yazın</div>
-          <div class="panel-body">
-        <tr valign="baseline">
-          <td colspan="2" align="center" nowrap="nowrap"><textarea class="ckeditor" name="aciklama" cols="32"><?php echo htmlentities($row_egitimduzenle['aciklama'], ENT_COMPAT, 'utf-8'); ?></textarea></td>
-        </tr>
-        </br><input type="submit" class="btn btn-info pull-right" value="Eğitimi Güncelle" />
-          </div>
-        </div>
-	</div>
-      <input type="hidden" name="MM_update" value="form1" />
-      <input type="hidden" name="id" value="<?php echo $row_egitimduzenle['id']; ?>" />
-    </form>
 
+  <div class="container">
+    <form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <table class="table table-bordered table-hover table-responsive">
+          <thead bgcolor="#46b8da" style="color:white;">
+            <tr>
+              <th>Eğitime Başlama Tarihi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="date" name="baslamatarihi" class="form-control" value="<?php echo htmlentities($row_egitimduzenle['baslamatarihi'], ENT_COMPAT, 'utf-8'); ?>"/></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <table class="table table-bordered table-hover table-responsive">
+          <thead bgcolor="#46b8da" style="color:white;">
+            <tr>
+              <th>Eğitimi Bitirme Tarihi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="date" name="bitirmetarihi" class="form-control" value="<?php echo htmlentities($row_egitimduzenle['bitirmetarihi'], ENT_COMPAT, 'utf-8'); ?>"/></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <table class="table table-bordered table-hover table-responsive">
+          <thead bgcolor="#46b8da" style="color:white;">
+            <tr>
+              <th>Eğitim Türü</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" name="okulduzeyi" class="form-control" value="<?php echo htmlentities($row_egitimduzenle['okulduzeyi'], ENT_COMPAT, 'utf-8'); ?>"/></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <table class="table table-bordered table-hover table-responsive">
+          <thead bgcolor="#46b8da" style="color:white;">
+            <tr>
+              <th>Eğitim Bölümü/Eylem</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" name="bolum" class="form-control" value="<?php echo htmlentities($row_egitimduzenle['bolum'], ENT_COMPAT, 'utf-8'); ?>"/></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <table class="table table-bordered table-hover table-responsive">
+          <thead bgcolor="#46b8da" style="color:white;">
+            <tr>
+              <th>Bu Eğitiminiz Hakkında Açıklama Yazın</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><textarea class="ckeditor" name="aciklama"><?php echo htmlentities($row_egitimduzenle['aciklama'], ENT_COMPAT, 'utf-8'); ?></textarea></td>
+            </tr>
+          </tbody>
+        </table>
+        <input type="hidden" name="MM_update" value="form1" />
+        <input type="hidden" name="id" value="<?php echo $row_egitimduzenle['id']; ?>" />
+        <input type="submit" class="btn btn-warning pull-right" value="Eğitimi Güncelle" />
+      </div>
+    </form>
+  </div>
+  </br>
+  <div class="container">
+    <div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    Oluşabilecek her hata için lütfen <a href="http://okandiyebiri.com/admin-panelli-kisisel-site-scripti/"><strong>destek</strong></a> sitesini ziyaret edin.
     </div>
-    <div class="container">
-           <div class="alert alert-warning alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          Oluşabilecek her hata için lütfen <a href="http://okandiyebiri.com/admin-panelli-kisisel-site-scripti/"><strong>destek</strong></a> sitesini ziyaret edin.
-          </div>
-          </br></br>
-     </div>
+    </br></br>
+  </div>
     <div class="navbar navbar-default navbar-fixed-bottom">
 		<div class="container">
 			<p class="navbar-text pull-left">Okan IŞIK</p>

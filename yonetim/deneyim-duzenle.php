@@ -1,18 +1,15 @@
 <?php require_once('../Connections/baglan.php'); ?>
 <?php
-//initialize the session
 if (!isset($_SESSION)) {
   session_start();
 }
 
-// ** Logout the current user. **
 $logoutAction = $_SERVER['PHP_SELF']."?doLogout=true";
 if ((isset($_SERVER['QUERY_STRING'])) && ($_SERVER['QUERY_STRING'] != "")){
   $logoutAction .="&". htmlentities($_SERVER['QUERY_STRING']);
 }
 
 if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
-  //to fully log out a visitor we need to clear the session varialbles
   $_SESSION['MM_Username'] = NULL;
   $_SESSION['MM_UserGroup'] = NULL;
   $_SESSION['PrevUrl'] = NULL;
@@ -103,13 +100,13 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
-  $updateSQL = sprintf("UPDATE deneyimler SET baslamatarihi=%s, ayrilmatarihi=%s, calistigiyer=%s, gorevi=%s, aciklama=%s WHERE id=%s",
-                       GetSQLValueString($_POST['baslamatarihi'], "date"),
-                       GetSQLValueString($_POST['ayrilmatarihi'], "date"),
-                       GetSQLValueString($_POST['calistigiyer'], "text"),
-                       GetSQLValueString($_POST['gorevi'], "text"),
-                       GetSQLValueString($_POST['aciklama'], "text"),
-                       GetSQLValueString($_POST['id'], "int"));
+$updateSQL = sprintf("UPDATE deneyimler SET baslamatarihi=%s, ayrilmatarihi=%s, calistigiyer=%s, gorevi=%s, aciklama=%s WHERE id=%s",
+   GetSQLValueString($_POST['baslamatarihi'], "date"),
+   GetSQLValueString($_POST['ayrilmatarihi'], "date"),
+   GetSQLValueString($_POST['calistigiyer'], "text"),
+   GetSQLValueString($_POST['gorevi'], "text"),
+   GetSQLValueString($_POST['aciklama'], "text"),
+   GetSQLValueString($_POST['id'], "int"));
 
   mysql_select_db($database_baglan, $baglan);
   $Result1 = mysql_query($updateSQL, $baglan) or die(mysql_error());
@@ -155,76 +152,109 @@ $totalRows_deneyimduzenle = mysql_num_rows($deneyimduzenle);
 			<div class="collapse navbar-collapse navbarSec">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="index.php">Anasayfa</a></li>
-                    <li><a href="ayarlar.php">Ayarlar</a></li>
-                    <li><a href="profil-resmi-ekle.php">Profil Resmi</a></li>
-                    <li><a href="galeri.php">Resim Galerisi</a></li>
-                    <li><a href="deneyimler.php">Deneyimler</a></li>
-                    <li><a href="egitim.php">Eğitimler</a></li>
-                    <li><a href="sosyal.php">Sosyal Linkler</a></li>
-                    <li><a href="yetenekler.php">Yetenekler</a></li>
-                    <li><a href="../index.php">Site Anasayfa</a></li>
+            <li><a href="ayarlar.php">Ayarlar</a></li>
+            <li><a href="profil-resmi-ekle.php">Profil Resmi</a></li>
+            <li><a href="galeri.php">Resim Galerisi</a></li>
+            <li><a href="deneyimler.php">Deneyimler</a></li>
+            <li><a href="egitim.php">Eğitimler</a></li>
+            <li><a href="sosyal.php">Sosyal Linkler</a></li>
+            <li><a href="yetenekler.php">Yetenekler</a></li>
+            <li><a href="../index.php">Site Anasayfa</a></li>
 					<li><a href="<?php echo $logoutAction ?>">Çıkış</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-    <div class="container">
+
+  <div class="container">
     <form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
-    <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">İşe Başlama Tarihi</div>
-          <div class="panel-body">
-                <input type="date" name="baslamatarihi" value="<?php echo htmlentities($row_deneyimduzenle['baslamatarihi'], ENT_COMPAT, 'utf-8'); ?>"/>
-          </div>
-        </div>
-	</div>
-    <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">İşten Ayrılma Tarihi</div>
-          <div class="panel-body">
-                <input type="date" name="ayrilmatarihi" value="<?php echo htmlentities($row_deneyimduzenle['ayrilmatarihi'], ENT_COMPAT, 'utf-8'); ?>"/>
-          </div>
-        </div>
-	</div>
-    <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">Çalıştığın Yer</div>
-          <div class="panel-body">
-                <input type="text" name="calistigiyer" value="<?php echo htmlentities($row_deneyimduzenle['calistigiyer'], ENT_COMPAT, 'utf-8'); ?>"/>
-          </div>
-        </div>
-	</div>
-    <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">Ne İş Yaptığın</div>
-          <div class="panel-body">
-            <input type="text" name="gorevi" value="<?php echo htmlentities($row_deneyimduzenle['gorevi'], ENT_COMPAT, 'utf-8'); ?>"/>
-          </div>
-        </div>
-	</div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">Bu Deneyiminiz Hakkında Açıklama Yazın</div>
-          <div class="panel-body">
-        <tr valign="baseline">
-          <td colspan="2" align="center" nowrap="nowrap"><textarea class="ckeditor" name="aciklama"><?php echo htmlentities($row_deneyimduzenle['aciklama'], ENT_COMPAT, 'utf-8'); ?></textarea></td>
-        </tr>
-          </br><input type="submit" class="btn btn-info pull-right" value="Deneyimi Güncelle" />
-          </div>
-        </div>
-	</div>
-      <input type="hidden" name="MM_update" value="form1" />
-      <input type="hidden" name="id" value="<?php echo $row_deneyimduzenle['id']; ?>" />
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <table class="table table-bordered table-hover table-responsive">
+          <thead bgcolor="#46b8da" style="color:white;">
+            <tr>
+              <th>İşe Başlama Tarihi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="date" class="form-control" name="baslamatarihi" value="<?php echo htmlentities($row_deneyimduzenle['baslamatarihi'], ENT_COMPAT, 'utf-8'); ?>"/></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <table class="table table-bordered table-hover table-responsive">
+          <thead bgcolor="#46b8da" style="color:white;">
+            <tr>
+              <th>İşten Ayrılma Tarihi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="date" class="form-control" name="ayrilmatarihi" value="<?php echo htmlentities($row_deneyimduzenle['ayrilmatarihi'], ENT_COMPAT, 'utf-8'); ?>"/></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <table class="table table-bordered table-hover table-responsive">
+          <thead bgcolor="#46b8da" style="color:white;">
+            <tr>
+              <th>Çalıştığın Yer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" name="calistigiyer" class="form-control" value="<?php echo htmlentities($row_deneyimduzenle['calistigiyer'], ENT_COMPAT, 'utf-8'); ?>"/></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <table class="table table-bordered table-hover table-responsive">
+          <thead bgcolor="#46b8da" style="color:white;">
+            <tr>
+              <th>Ne İş Yaptığın</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" name="gorevi" class="form-control" value="<?php echo htmlentities($row_deneyimduzenle['gorevi'], ENT_COMPAT, 'utf-8'); ?>"/></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <table class="table table-bordered table-hover table-responsive">
+          <thead bgcolor="#46b8da" style="color:white;">
+            <tr>
+              <th>Bu Deneyiminiz Hakkında Açıklama Yazın</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><textarea class="ckeditor" name="aciklama"><?php echo htmlentities($row_deneyimduzenle['aciklama'], ENT_COMPAT, 'utf-8'); ?></textarea></td>
+            </tr>
+          </tbody>
+        </table>
+        <input type="submit" class="btn btn-warning pull-right" value="Deneyimi Güncelle" />
+        <input type="hidden" name="MM_update" value="form1" />
+        <input type="hidden" name="id" value="<?php echo $row_deneyimduzenle['id']; ?>" />
+	   </div>
     </form>
-    </br>
+  </div>
+  </br>
+  <div class="container">
+    <div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    Oluşabilecek her hata için lütfen <a href="http://okandiyebiri.com/admin-panelli-kisisel-site-scripti/"><strong>destek</strong></a> sitesini ziyaret edin.
     </div>
-    <div class="container">
-           <div class="alert alert-warning alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          Oluşabilecek her hata için lütfen <a href="http://okandiyebiri.com/admin-panelli-kisisel-site-scripti/"><strong>destek</strong></a> sitesini ziyaret edin.
-          </div>
-          </br></br>
-     </div>
+    </br></br>
+  </div>
     <div class="navbar navbar-default navbar-fixed-bottom">
 		<div class="container">
 			<p class="navbar-text pull-left">Okan IŞIK</p>
