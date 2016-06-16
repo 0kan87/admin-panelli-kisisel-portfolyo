@@ -145,12 +145,10 @@ $totalRows_sosyal = mysql_num_rows($sosyal);
   <div class="container">
       <a href="sosyal-ekle.php" class="navbar-btn btn-info btn pull-right">Sosyal Link Ekle</a>
       <table class="table table-bordered table-hover table-responsive">
-        <thead>
+        <thead bgcolor="#46b8da" style="color:white;">
           <tr>
             <th>Renk</th>
-            <th>Link</th>
-            <th>Düzenle</th>
-            <th>Sil</th>
+            <th colspan="3">Link</th>
           </tr>
         </thead>
         <?php do { ?>

@@ -144,17 +144,13 @@ if (!empty($_SERVER['QUERY_STRING'])) {
 $queryString_egitim = sprintf("&totalRows_egitim=%d%s", $totalRows_egitim, $queryString_egitim);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/panel.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!-- InstanceBeginEditable name="doctitle" -->
 <title>Yönetim Paneli</title>
-<!-- InstanceEndEditable -->
 <link href="../SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
-<!-- InstanceBeginEditable name="head" -->
-<!-- InstanceEndEditable -->
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-static-top">
@@ -182,38 +178,30 @@ $queryString_egitim = sprintf("&totalRows_egitim=%d%s", $totalRows_egitim, $quer
 			</div>
 		</div>
 	</div>
-    <div class="container">
-<!-- InstanceBeginEditable name="EditRegion1" -->
-<div class="col-xs-12 col-sm-12 col-md-12">
-<div class="panel panel-default">
-  <!-- Default panel contents -->
-  <div class="panel-heading">Eğitim Ayarları</div>
-  <a href="egitim-ekle.php" class="navbar-btn btn-info btn pull-right">Eğitim Ekle</a>
-  <div class="panel-body">
-    <p>Düzenle ikonuna tıklayarak var olan bir eğitimi düzenleyebilir veya sil ikonuna tıklayarak tamamen silebilirsiniz.</p>
-  </div>
 
-  <!-- Table -->
-  <table class="table">
-          <tr bgcolor="#EEEEEE">
-        <td width="157">Başlama Yılı</td>
-        <td width="148">Bitirme Yılı</td>
-        <td width="205">Eğitim Türü</td>
-        <td colspan="3">Eğitim Bölümü/Eylemi</td>
-        </tr>
-      <?php do { ?>
-        <tr bgcolor="#FFFFFF">
-          <td><?php echo $row_egitim['baslamatarihi']; ?></td>
-          <td><?php echo $row_egitim['bitirmetarihi']; ?></td>
-          <td><?php echo $row_egitim['okulduzeyi']; ?></td>
-          <td width="203"><?php echo $row_egitim['bolum']; ?></td>
-          <td width="16"><a href="egitim-duzenle.php?id=<?php echo $row_egitim['id']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
-          <td width="16"><a href="egitim-sil.php?id=<?php echo $row_egitim['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
-        </tr>
-        <?php } while ($row_egitim = mysql_fetch_assoc($egitim)); ?>
-  </table>
-</div>
-</div>
+  <div class="container">
+    <a href="egitim-ekle.php" class="navbar-btn btn-info btn pull-right">Eğitim Ekle</a>
+    <table class="table table-hover table-bordered">
+      <tr>
+        <thead bgcolor="#46b8da" style="color:white;">
+          <th>Başlama Yılı</th>
+          <th>Bitirme Yılı</th>
+          <th>Eğitim Türü</th>
+          <th colspan="3">Eğitim Bölümü/Eylemi</th>
+        </thead>
+      </tr>
+        <?php do { ?>
+          <tr>
+            <td><?php echo $row_egitim['baslamatarihi']; ?></td>
+            <td><?php echo $row_egitim['bitirmetarihi']; ?></td>
+            <td><?php echo $row_egitim['okulduzeyi']; ?></td>
+            <td width="203"><?php echo $row_egitim['bolum']; ?></td>
+            <td width="4"><center><a href="egitim-duzenle.php?id=<?php echo $row_egitim['id']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></center></td>
+            <td width="4"><center><a href="egitim-sil.php?id=<?php echo $row_egitim['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center></td>
+          </tr>
+          <?php } while ($row_egitim = mysql_fetch_assoc($egitim)); ?>
+    </table>
+
     <table border="0">
       <tr>
         <td><?php if ($pageNum_egitim > 0) { // Show if not first page ?>
@@ -229,17 +217,15 @@ $queryString_egitim = sprintf("&totalRows_egitim=%d%s", $totalRows_egitim, $quer
             <a href="<?php printf("%s?pageNum_egitim=%d%s", $currentPage, $totalPages_egitim, $queryString_egitim); ?>">Son</a>
             <?php } // Show if not last page ?></td>
       </tr>
-  </table>
-    </p>
-    <!-- InstanceEndEditable -->
+    </table>
+  </div>
 
+  <div class="container">
+    <div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    Oluşabilecek her hata için lütfen <a href="http://okandiyebiri.com/admin-panelli-kisisel-site-scripti/"><strong>destek</strong></a> sitesini ziyaret edin.
     </div>
-    <div class="container">
-           <div class="alert alert-warning alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          Oluşabilecek her hata için lütfen <a href="http://okandiyebiri.com/admin-panelli-kisisel-site-scripti/"><strong>destek</strong></a> sitesini ziyaret edin.
-          </div>
-          </br></br>
+    </br></br>
      </div>
     <div class="navbar navbar-default navbar-fixed-bottom">
 		<div class="container">
@@ -250,7 +236,7 @@ $queryString_egitim = sprintf("&totalRows_egitim=%d%s", $totalRows_egitim, $quer
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 </body>
-<!-- InstanceEnd --></html>
+</html>
 <?php
 mysql_free_result($egitim);
 ?>

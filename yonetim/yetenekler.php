@@ -237,13 +237,11 @@ $queryString_yetenekler = sprintf("&totalRows_yetenekler=%d%s", $totalRows_yeten
         </div>
         <div class="panel-heading">Yetenekler Sol Bölüm</div>
           <table class="table table-bordered table-hover table-condensed table-responsive">
-            <thead>
+            <thead bgcolor="#46b8da" style="color:white;">
               <tr>
                 <th>Renk</th>
                 <th>Yetenekler</th>
-                <th>Yüzde</th>
-                <th>Düzenle</th>
-                <th>Sil</th>
+                <th colspan="3">Yüzde</th>
               </tr>
             </thead>
             <?php do { ?>
@@ -274,13 +272,11 @@ $queryString_yetenekler = sprintf("&totalRows_yetenekler=%d%s", $totalRows_yeten
       <div class="panel panel-default">
       <div class="panel-heading">Yetenekler Sağ Bölüm</div>
         <table class="table table-bordered table-hover table-condensed table-responsive">
-          <thead>
+          <thead bgcolor="#46b8da" style="color:white;">
             <tr>
               <th>Renk</th>
               <th>Yetenekler</th>
-              <th>Yüzde</th>
-              <th>Düzenle</th>
-              <th>Sil</th>
+              <th colspan="3">Yüzde</th>
             </tr>
           </thead>
           <?php do { ?>
