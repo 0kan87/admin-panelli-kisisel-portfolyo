@@ -82,46 +82,22 @@ ob_end_flush();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Yönetici Giriş Paneli</title>
-<link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../css/kullanici-girisi.css">
 </head>
 
 <body>
-<form id="form1" name="form1" method="POST" action="<?php echo $loginFormAction; ?>">
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-<div class="container">
-<div class="col-xs-12 col-sm-4 col-sm-offset-5 col-md-4 col-md-offset-5">
-  <!-- Default panel contents -->
-  <div class="panel-heading">Yönetici Girişi</div>
-
-  <!-- Table -->
-  <table class="table">
-    <tr>
-      <td width="142" align="right">Kullanıcı Adı:</td>
-      <td width="144"><label for="kullaniciadi5"></label>
-      <input type="text" name="kullaniciadi" id="kullaniciadi5" /></td>
-    </tr>
-    <tr>
-      <td align="right">Şifre:</td>
-      <td><label for="sifre"></label>
-      <input type="password" name="sifre" id="sifre" /></td>
-    </tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td><input type="submit" name="girisyap" id="girisyap" value="Giriş Yap" /></td>
-    </tr>
-  </table>
-</div>
-</div>
-</form>
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+  <div class = "container">
+      <form action="<?php echo $loginFormAction; ?>" method="post" name="form1" id="form1" class="form-signin">
+          <center><h3 class="form-signin-heading">YÖNETİM PANELİ</h3></center>
+         
+          <input type="text" name="kullaniciadi" id="kullaniciadi5" class="form-control" placeholder="Kulalnıcı Adı" required="" autofocus="" />
+          <br/>
+          <input type="password" name="sifre" id="sifre" class="form-control" placeholder="Şifre" required=""/>          
+   
+          <button class="btn btn-lg btn-primary btn-block"  name="girisyap" id="girisyap" value="Login" type="Submit">Giriş Yap</button>        
+      </form>     
+  </div>
+  <script src="https://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
