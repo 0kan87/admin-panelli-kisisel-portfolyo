@@ -25,6 +25,7 @@ h6{font-size:14px;line-height:17px;margin-bottom:10px;}
 .extra_wrap{overflow:hidden;}
 input[type="text"],
 input[type="search"],
+input[type="file"],
 input[type="date"],
 input[type="password"],
 input[type="url"],

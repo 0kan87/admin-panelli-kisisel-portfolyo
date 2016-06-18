@@ -13,7 +13,7 @@
 	text-align: center;
 }
 </style>
-<meta http-equiv="refresh" content="3;URL=giris.php" />
+<meta http-equiv="refresh" content="4;URL=giris.php" />
 </head>
 
 <body>

@@ -1,5 +1,4 @@
-<?php require_once('Connections/baglan.php'); ?>
-<?php
+<?php require_once('Connections/baglan.php');
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -30,7 +29,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
-
 mysql_select_db($database_baglan, $baglan);
 $query_ayarlar = "SELECT adsoyadi, emailadresi, telefonnumarasi, siteadresi, ilksayfabaslik, ilksayfaicerik, sitebaslik, siteaciklama, anahtarkelime FROM ayarlar";
 $ayarlar = mysql_query($query_ayarlar, $baglan) or die(mysql_error());
@@ -68,7 +66,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
-
 $maxRows_egitim = 10;
 $pageNum_egitim = 0;
 if (isset($_GET['pageNum_egitim'])) {
@@ -193,24 +190,19 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
-
 $currentPage = $_SERVER["PHP_SELF"];
-
 $currentPage = $_SERVER["PHP_SELF"];
-
 $maxRows_yetenekler = 10;
 $pageNum_yetenekler = 0;
 if (isset($_GET['pageNum_yetenekler'])) {
   $pageNum_yetenekler = $_GET['pageNum_yetenekler'];
 }
 $startRow_yetenekler = $pageNum_yetenekler * $maxRows_yetenekler;
-
 mysql_select_db($database_baglan, $baglan);
 $query_yetenekler = "SELECT * FROM yetenekler ORDER BY id DESC";
 $query_limit_yetenekler = sprintf("%s LIMIT %d, %d", $query_yetenekler, $startRow_yetenekler, $maxRows_yetenekler);
 $yetenekler = mysql_query($query_limit_yetenekler, $baglan) or die(mysql_error());
 $row_yetenekler = mysql_fetch_assoc($yetenekler);
-
 if (isset($_GET['totalRows_yetenekler'])) {
   $totalRows_yetenekler = $_GET['totalRows_yetenekler'];
 } else {
@@ -225,7 +217,6 @@ if (isset($_GET['pageNum_sagyetenekler'])) {
   $pageNum_sagyetenekler = $_GET['pageNum_sagyetenekler'];
 }
 $startRow_sagyetenekler = $pageNum_sagyetenekler * $maxRows_sagyetenekler;
-
 mysql_select_db($database_baglan, $baglan);
 $query_sagyetenekler = "SELECT * FROM sag_yetenekler ORDER BY id DESC";
 $query_limit_sagyetenekler = sprintf("%s LIMIT %d, %d", $query_sagyetenekler, $startRow_sagyetenekler, $maxRows_sagyetenekler);
@@ -239,13 +230,11 @@ if (isset($_GET['totalRows_sagyetenekler'])) {
   $totalRows_sagyetenekler = mysql_num_rows($all_sagyetenekler);
 }
 $totalPages_sagyetenekler = ceil($totalRows_sagyetenekler/$maxRows_sagyetenekler)-1;
-
 mysql_select_db($database_baglan, $baglan);
 $query_sosyal = "SELECT id, link, icontur, renk FROM sosyal";
 $sosyal = mysql_query($query_sosyal, $baglan) or die(mysql_error());
 $row_sosyal = mysql_fetch_assoc($sosyal);
 $totalRows_sosyal = mysql_num_rows($sosyal);
-
 mysql_select_db($database_baglan, $baglan);
 $query_resim = "SELECT * FROM resim";
 $resim = mysql_query($query_resim, $baglan) or die(mysql_error());
@@ -298,14 +287,16 @@ if (!empty($_SERVER['QUERY_STRING'])) {
     $queryString_yetenekler = "&" . htmlentities(implode("&", $newParams));
   }
 }
-$queryString_yetenekler = sprintf("&totalRows_yetenekler=%d%s", $totalRows_yetenekler, $queryString_yetenekler);
-?>
+$queryString_yetenekler = sprintf("&totalRows_yetenekler=%d%s", $totalRows_yetenekler, $queryString_yetenekler);?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title><?php echo $row_ayarlar['adsoyadi']; ?></title>	
 		<meta charset="UTF-8">
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+    <meta name="description" content="<?php echo $row_ayarlar['siteaciklama']; ?>" />
+    <meta name="keywords" content="<?php echo $row_ayarlar['anahtarkelime']; ?>"/>
+    <meta name="author" content="<?php echo $row_ayarlar['adsoyadi']; ?>" />
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/responsive.css">
 		<link rel="stylesheet" href="assets/prettyphoto/css/prettyPhoto.css">		

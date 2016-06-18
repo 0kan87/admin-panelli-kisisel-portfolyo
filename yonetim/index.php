@@ -70,46 +70,8 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
   header("Location: ". $MM_restrictGoTo); 
   exit;
 }
+include "ust.php";
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/panel.dwt.php" codeOutsideHTMLIsLocked="false" -->
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!-- InstanceBeginEditable name="doctitle" -->
-<title>Yönetim Paneli</title>
-<!-- InstanceEndEditable -->
-<link href="../SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<!-- InstanceBeginEditable name="head" -->
-<!-- InstanceEndEditable -->
-</head>
-<body>
-	<div class="navbar navbar-inverse navbar-static-top">
-		<div class="container">
-			<a href="#" class="navbar-brand">Admin Paneli</a>
-			
-			<button class="navbar-toggle" data-toggle="collapse" data-target=".navbarSec">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<div class="collapse navbar-collapse navbarSec">
-				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="index.php">Anasayfa</a></li>
-              <li><a href="ayarlar.php">Ayarlar</a></li>
-              <li><a href="profil-resmi-ekle.php">Profil Resmi</a></li>
-              <li><a href="galeri.php">Resim Galerisi</a></li>
-              <li><a href="deneyimler.php">Deneyimler</a></li>
-              <li><a href="egitim.php">Eğitimler</a></li>
-              <li><a href="sosyal.php">Sosyal Linkler</a></li>
-              <li><a href="yetenekler.php">Yetenekler</a></li>
-              <li><a href="../index.php">Site Anasayfa</a></li>
-					<li><a href="<?php echo $logoutAction ?>">Çıkış</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
     <div class="container">
         <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="panel panel-default">
@@ -139,20 +101,4 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
           </div>
         </div>
     </div>
-    <div class="container">
-           <div class="alert alert-warning alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          Oluşabilecek her hata için lütfen <a href="http://okandiyebiri.com/admin-panelli-kisisel-site-scripti/"><strong>destek</strong></a> sitesini ziyaret edin.
-          </div>
-          </br></br>
-     </div>
-    <div class="navbar navbar-default navbar-fixed-bottom">
-		<div class="container">
-			<p class="navbar-text pull-left">Okan IŞIK</p>
-			<a href="http://okandiyebiri.com" class="navbar-btn btn-info btn pull-right">okandiyebiri.com</a>
-		</div>
-	</div>
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-</body>
-<!-- InstanceEnd --></html>
+<?php include "alt.php"; ?>
