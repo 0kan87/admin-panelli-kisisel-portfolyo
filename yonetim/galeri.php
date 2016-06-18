@@ -1,18 +1,14 @@
-<?php require_once('../Connections/baglan.php'); ?>
-<?php
-//initialize the session
+<?php require_once('../Connections/baglan.php');
 if (!isset($_SESSION)) {
   session_start();
 }
 
-// ** Logout the current user. **
 $logoutAction = $_SERVER['PHP_SELF']."?doLogout=true";
 if ((isset($_SERVER['QUERY_STRING'])) && ($_SERVER['QUERY_STRING'] != "")){
   $logoutAction .="&". htmlentities($_SERVER['QUERY_STRING']);
 }
 
 if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
-  //to fully log out a visitor we need to clear the session varialbles
   $_SESSION['MM_Username'] = NULL;
   $_SESSION['MM_UserGroup'] = NULL;
   $_SESSION['PrevUrl'] = NULL;
@@ -34,22 +30,15 @@ if (!isset($_SESSION)) {
 $MM_authorizedUsers = "";
 $MM_donotCheckaccess = "true";
 
-// *** Restrict Access To Page: Grant or deny access to this page
 function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) { 
-  // For security, start by assuming the visitor is NOT authorized. 
   $isValid = False; 
 
-  // When a visitor has logged into this site, the Session variable MM_Username set equal to their username. 
-  // Therefore, we know that a user is NOT logged in if that Session variable is blank. 
   if (!empty($UserName)) { 
-    // Besides being logged in, you may restrict access to only certain users based on an ID established when they login. 
-    // Parse the strings into arrays. 
     $arrUsers = Explode(",", $strUsers); 
     $arrGroups = Explode(",", $strGroups); 
     if (in_array($UserName, $arrUsers)) { 
       $isValid = true; 
     } 
-    // Or, you may restrict access to only certain users based on their username. 
     if (in_array($UserGroup, $arrGroups)) { 
       $isValid = true; 
     } 
@@ -103,7 +92,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
-
 $currentPage = $_SERVER["PHP_SELF"];
 
 $maxRows_resim = 3;
@@ -144,52 +132,45 @@ if (!empty($_SERVER['QUERY_STRING'])) {
 $queryString_resim = sprintf("&totalRows_resim=%d%s", $totalRows_resim, $queryString_resim);
 include "ust.php";
 ?>
-    <div class="container">
-<!-- InstanceBeginEditable name="EditRegion1" -->
-  <div class="btn-group" role="group">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+  <div class="container">
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
       Yeni Ekle
       <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
+      </button>
+      <ul class="dropdown-menu" role="menu">
       <li><a href="resimler.php">Galeriye Ekle</a></li>
       <li><a href="profil-resmi-ekle.php">Profile Ekle</a></li>
-    </ul>
-  </div>
-  
-  
+      </ul>
+    </div>  
    
-  <div class="row">
-  <?php do { ?>
-  <div class="col-sx-12 col-sm-4 col-md-4">
-  
-    <div class="thumbnail">
-      <img src="../img/<?php echo $row_resim['resim']; ?>.jpg" alt="...">
-      <div class="caption">
-        <h4>Resim Bilgileri</h4>
-        <p>Üst Açıklama: <?php echo $row_resim['ustbaslik']; ?></p>
-        <p>Alt Açıklama: <?php echo $row_resim['altbaslik']; ?></p>
-        <p><a href="resim-sil.php?id=<?php echo $row_resim['id']; ?>" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Resmi Sil</a></p>
+    <div class="row">
+      <?php do { ?>
+      <div class="col-sx-12 col-sm-4 col-md-4">
+        <div class="thumbnail">
+        <img src="../img/<?php echo $row_resim['resim']; ?>.jpg" alt="...">
+          <div class="caption">
+            <h4>Resim Bilgileri</h4>
+            <p>Üst Açıklama: <?php echo $row_resim['ustbaslik']; ?></p>
+            <p>Alt Açıklama: <?php echo $row_resim['altbaslik']; ?></p>
+            <p><a href="resim-sil.php?id=<?php echo $row_resim['id']; ?>" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Resmi Sil</a></p>
+          </div>
+        </div>
       </div>
+      <?php } while ($row_resim = mysql_fetch_assoc($resim)); ?>
     </div>
-     
+
+    <nav>
+      <ul class="pager">
+        <li class="onceki"><a href="<?php printf("%s?pageNum_resim=%d%s", $currentPage, max(0, $pageNum_resim - 1), $queryString_resim); ?>"><span aria-hidden="true">&larr;</span> Önceki Resimler</a></li>
+        <li class="sonraki"><a href="<?php printf("%s?pageNum_resim=%d%s", $currentPage, min($totalPages_resim, $pageNum_resim + 1), $queryString_resim); ?>">Sonraki Resimler <span aria-hidden="true">&rarr;</span></a></li>
+      </ul>
+    </nav>
+    <?php if ($pageNum_resim > 0) { // Show if not first page ?>
+    <?php } // Show if not first page ?>
+    <?php if ($pageNum_resim < $totalPages_resim) { // Show if not last page ?>
+    <?php } // Show if not last page ?>
   </div>
-  <?php } while ($row_resim = mysql_fetch_assoc($resim)); ?>
-</div>
-<nav>
-  <ul class="pager">
-    <li class="onceki"><a href="<?php printf("%s?pageNum_resim=%d%s", $currentPage, max(0, $pageNum_resim - 1), $queryString_resim); ?>"><span aria-hidden="true">&larr;</span> Önceki Resimler</a></li>
-    <li class="sonraki"><a href="<?php printf("%s?pageNum_resim=%d%s", $currentPage, min($totalPages_resim, $pageNum_resim + 1), $queryString_resim); ?>">Sonraki Resimler <span aria-hidden="true">&rarr;</span></a></li>
-  </ul>
-</nav>
-<?php if ($pageNum_resim > 0) { // Show if not first page ?>
-<?php } // Show if not first page ?>
-<?php if ($pageNum_resim < $totalPages_resim) { // Show if not last page ?>
-<?php } // Show if not last page ?>
-<!-- InstanceEndEditable -->
-
-    </div>
-
 <?php
 include "alt.php";
 mysql_free_result($resim);

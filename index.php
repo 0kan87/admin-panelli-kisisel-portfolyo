@@ -291,16 +291,16 @@ $queryString_yetenekler = sprintf("&totalRows_yetenekler=%d%s", $totalRows_yeten
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><?php echo $row_ayarlar['adsoyadi']; ?></title>	
+		<title><?php echo $row_ayarlar['adsoyadi']; ?></title>
 		<meta charset="UTF-8">
-		<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-    <meta name="description" content="<?php echo $row_ayarlar['siteaciklama']; ?>" />
-    <meta name="keywords" content="<?php echo $row_ayarlar['anahtarkelime']; ?>"/>
-    <meta name="author" content="<?php echo $row_ayarlar['adsoyadi']; ?>" />
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/responsive.css">
-		<link rel="stylesheet" href="assets/prettyphoto/css/prettyPhoto.css">		
-		<link rel="stylesheet" href="assets/colorpicker/colorpicker.css">		
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
+    <meta content="<?php echo $row_ayarlar['siteaciklama']; ?>" name="description"/>
+    <meta content="<?php echo $row_ayarlar['anahtarkelime']; ?>" name="keywords"/>
+    <meta content="<?php echo $row_ayarlar['adsoyadi']; ?>" name="author"/>
+		<link rel="stylesheet" href="css/style.css"/>
+		<link rel="stylesheet" href="css/responsive.css"/>
+		<link rel="stylesheet" href="assets/prettyphoto/css/prettyPhoto.css"/>
+		<link rel="stylesheet" href="assets/colorpicker/colorpicker.css"/>
 		<script src="assets/jquery-1.10.2.min.js"></script>
 		<script src="assets/jquery.tools.min.js"></script>
 		<script src="assets/jquery.easing.js"></script>

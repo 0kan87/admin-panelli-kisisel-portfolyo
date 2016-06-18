@@ -1,5 +1,4 @@
-<?php require_once('../Connections/baglan.php'); ?>
-<?php
+<?php require_once('../Connections/baglan.php');
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -30,15 +29,10 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
-?>
-<?php
-  
-// *** Validate request to login to this site.
 if (!isset($_SESSION)) {
   ob_start();
   session_start();
 }
-
 $loginFormAction = $_SERVER['PHP_SELF'];
 if (isset($_GET['accesscheck'])) {
   $_SESSION['PrevUrl'] = $_GET['accesscheck'];
@@ -62,7 +56,6 @@ if (isset($_POST['kullaniciadi'])) {
      $loginStrGroup = "";
     
 	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
-    //declare two session variables and assign them
     $_SESSION['MM_Username'] = $loginUsername;
     $_SESSION['MM_UserGroup'] = $loginStrGroup;	      
 
@@ -85,7 +78,6 @@ ob_end_flush();
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/kullanici-girisi.css">
 </head>
-
 <body>
   <div class = "container">
       <form action="<?php echo $loginFormAction; ?>" method="post" name="form1" id="form1" class="form-signin">
@@ -98,6 +90,6 @@ ob_end_flush();
           <button class="btn btn-lg btn-primary btn-block"  name="girisyap" id="girisyap" value="Login" type="Submit">Giriş Yap</button>        
       </form>     
   </div>
-  <script src="https://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="//getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
