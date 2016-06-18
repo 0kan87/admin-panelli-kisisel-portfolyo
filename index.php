@@ -454,7 +454,7 @@ $queryString_yetenekler = sprintf("&totalRows_yetenekler=%d%s", $totalRows_yeten
 						<div class="skills_sidebar_section">
 							<!-- Skills widget -->
 							<aside class="widget-even widget widget_skills">
-								<h3 class="widget_title">Programming Skills (Programlama Becerileri)</h3>
+								<h3 class="widget_title">Program Yetenekleri</h3>
                 				<?php do { ?>
 								<div class="widget_inner">
 									<div class="skills_row odd first">
@@ -474,7 +474,7 @@ $queryString_yetenekler = sprintf("&totalRows_yetenekler=%d%s", $totalRows_yeten
 
 							<!-- Skills widget -->
 							<aside class="widget-odd widget widget_skills">
-								<h3 class="widget_title">Graphic Skills (Grafik Becerileri)</h3>
+								<h3 class="widget_title">Kodlama Yetenekleri</h3>
                 				<?php do { ?>
 								<div class="widget_inner">
 									<div class="skills_row odd first">
