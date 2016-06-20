@@ -294,9 +294,9 @@ $queryString_yetenekler = sprintf("&totalRows_yetenekler=%d%s", $totalRows_yeten
 		<title><?php echo $row_ayarlar['adsoyadi']; ?></title>
 		<meta charset="UTF-8">
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
-    <meta content="<?php echo $row_ayarlar['siteaciklama']; ?>" name="description"/>
-    <meta content="<?php echo $row_ayarlar['anahtarkelime']; ?>" name="keywords"/>
-    <meta content="<?php echo $row_ayarlar['adsoyadi']; ?>" name="author"/>
+	    <meta content="<?php echo $row_ayarlar['siteaciklama']; ?>" name="description"/>
+	    <meta content="<?php echo $row_ayarlar['anahtarkelime']; ?>" name="keywords"/>
+	    <meta content="<?php echo $row_ayarlar['adsoyadi']; ?>" name="author"/>
 		<link rel="stylesheet" href="css/style.css"/>
 		<link rel="stylesheet" href="css/responsive.css"/>
 		<link rel="stylesheet" href="assets/prettyphoto/css/prettyPhoto.css"/>
@@ -588,8 +588,6 @@ $queryString_yetenekler = sprintf("&totalRows_yetenekler=%d%s", $totalRows_yeten
 </html>
 <?php
 mysql_free_result($ayarlar);
-
 mysql_free_result($sosyal);
-
 mysql_free_result($resim);
 ?>
