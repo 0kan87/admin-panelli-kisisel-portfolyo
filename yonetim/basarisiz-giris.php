@@ -1,6 +1,7 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<!DOCTYPE html>
+<html lang="tr">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="refresh" content="4;URL=giris.php">
 <title>Hatalı Giriş</title>
@@ -9,7 +10,6 @@
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
-
 
 	<div style="margin-top:100px;"></div>
 	<div class="container">

@@ -130,6 +130,7 @@ $totalRows_sosyalduzenle = mysql_num_rows($sosyalduzenle);
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Yönetim Paneli</title>
 <link href="dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">

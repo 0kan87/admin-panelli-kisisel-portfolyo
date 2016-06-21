@@ -1,5 +1,4 @@
-<?php require_once('../Connections/baglan.php'); ?>
-<?php
+<?php require_once('../Connections/baglan.php');
 if (!isset($_SESSION)) {
   session_start();
 }
@@ -23,8 +22,6 @@ if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
     exit;
   }
 }
-?>
-<?php
 if (!isset($_SESSION)) {
   session_start();
 }

@@ -128,8 +128,9 @@ $row_yetenekduzenle = mysql_fetch_assoc($yetenekduzenle);
 $totalRows_yetenekduzenle = mysql_num_rows($yetenekduzenle);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Yönetim Paneli</title>
 <link href="dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
@@ -223,6 +224,8 @@ $totalRows_yetenekduzenle = mysql_num_rows($yetenekduzenle);
       <a href="//okandiyebiri.com" class="navbar-btn btn-info btn pull-right">okandiyebiri.com</a>
     </div>
   </div>
+  <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
 <?php

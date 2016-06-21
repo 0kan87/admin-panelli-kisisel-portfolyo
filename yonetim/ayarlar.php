@@ -1,5 +1,4 @@
-<?php require_once('../Connections/baglan.php'); ?>
-<?php
+<?php require_once('../Connections/baglan.php');
 if (!isset($_SESSION)) {
   session_start();
 }
@@ -23,8 +22,6 @@ if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
     exit;
   }
 }
-?>
-<?php
 if (!isset($_SESSION)) {
   session_start();
 }
@@ -98,21 +95,20 @@ $editFormAction = $_SERVER['PHP_SELF'];
 if (isset($_SERVER['QUERY_STRING'])) {
   $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
 }
-
 if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
   $updateSQL = sprintf("UPDATE ayarlar SET adsoyadi=%s, kullaniciadi=%s, emailadresi=%s, telefonnumarasi=%s, siteadresi=%s, sifre=%s, ilksayfabaslik=%s, ilksayfaicerik=%s, sitebaslik=%s, siteaciklama=%s, anahtarkelime=%s WHERE id=%s",
-     GetSQLValueString($_POST['adsoyadi'], "text"),
-     GetSQLValueString($_POST['kullaniciadi'], "text"),
-     GetSQLValueString($_POST['emailadresi'], "text"),
-     GetSQLValueString($_POST['telefonnumarasi'], "text"),
-     GetSQLValueString($_POST['siteadresi'], "text"),
-     GetSQLValueString($_POST['sifre'], "text"),
-     GetSQLValueString($_POST['ilksayfabaslik'], "text"),
-     GetSQLValueString($_POST['ilksayfaicerik'], "text"),
-     GetSQLValueString($_POST['sitebaslik'], "text"),
-     GetSQLValueString($_POST['siteaciklama'], "text"),
-     GetSQLValueString($_POST['anahtarkelime'], "text"),
-     GetSQLValueString($_POST['id'], "int"));
+    GetSQLValueString($_POST['adsoyadi'], "text"),
+    GetSQLValueString($_POST['kullaniciadi'], "text"),
+    GetSQLValueString($_POST['emailadresi'], "text"),
+    GetSQLValueString($_POST['telefonnumarasi'], "text"),
+    GetSQLValueString($_POST['siteadresi'], "text"),
+    GetSQLValueString($_POST['sifre'], "text"),
+    GetSQLValueString($_POST['ilksayfabaslik'], "text"),
+    GetSQLValueString($_POST['ilksayfaicerik'], "text"),
+    GetSQLValueString($_POST['sitebaslik'], "text"),
+    GetSQLValueString($_POST['siteaciklama'], "text"),
+    GetSQLValueString($_POST['anahtarkelime'], "text"),
+    GetSQLValueString($_POST['id'], "int"));
 
   mysql_select_db($database_baglan, $baglan);
   $Result1 = mysql_query($updateSQL, $baglan) or die(mysql_error());

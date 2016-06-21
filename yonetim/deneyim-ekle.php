@@ -1,5 +1,4 @@
-<?php require_once('../Connections/baglan.php'); ?>
-<?php
+<?php require_once('../Connections/baglan.php');
 if (!isset($_SESSION)) {
   session_start();
 }
@@ -23,8 +22,7 @@ if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
     exit;
   }
 }
-?>
-<?php
+
 if (!isset($_SESSION)) {
   session_start();
 }
@@ -61,8 +59,7 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
   header("Location: ". $MM_restrictGoTo); 
   exit;
 }
-?>
-<?php
+
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -101,12 +98,12 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
   $insertSQL = sprintf("INSERT INTO deneyimler (id, baslamatarihi, ayrilmatarihi, calistigiyer, gorevi, aciklama) VALUES (%s, %s, %s, %s, %s, %s)",
-     GetSQLValueString($_POST['id'], "int"),
-     GetSQLValueString($_POST['baslamatarihi'], "date"),
-     GetSQLValueString($_POST['ayrilmatarihi'], "date"),
-     GetSQLValueString($_POST['calistigiyer'], "text"),
-     GetSQLValueString($_POST['gorevi'], "text"),
-     GetSQLValueString($_POST['aciklama'], "text"));
+  GetSQLValueString($_POST['id'], "int"),
+  GetSQLValueString($_POST['baslamatarihi'], "date"),
+  GetSQLValueString($_POST['ayrilmatarihi'], "date"),
+  GetSQLValueString($_POST['calistigiyer'], "text"),
+  GetSQLValueString($_POST['gorevi'], "text"),
+  GetSQLValueString($_POST['aciklama'], "text"));
 
   mysql_select_db($database_baglan, $baglan);
   $Result1 = mysql_query($insertSQL, $baglan) or die(mysql_error());

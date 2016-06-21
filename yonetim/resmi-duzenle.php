@@ -1,18 +1,14 @@
-<?php require_once('../Connections/baglan.php'); ?>
-<?php
-//initialize the session
+<?php require_once('../Connections/baglan.php');
 if (!isset($_SESSION)) {
   session_start();
 }
 
-// ** Logout the current user. **
 $logoutAction = $_SERVER['PHP_SELF']."?doLogout=true";
 if ((isset($_SERVER['QUERY_STRING'])) && ($_SERVER['QUERY_STRING'] != "")){
   $logoutAction .="&". htmlentities($_SERVER['QUERY_STRING']);
 }
 
 if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
-  //to fully log out a visitor we need to clear the session varialbles
   $_SESSION['MM_Username'] = NULL;
   $_SESSION['MM_UserGroup'] = NULL;
   $_SESSION['PrevUrl'] = NULL;
@@ -34,22 +30,15 @@ if (!isset($_SESSION)) {
 $MM_authorizedUsers = "";
 $MM_donotCheckaccess = "true";
 
-// *** Restrict Access To Page: Grant or deny access to this page
 function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) { 
-  // For security, start by assuming the visitor is NOT authorized. 
   $isValid = False; 
 
-  // When a visitor has logged into this site, the Session variable MM_Username set equal to their username. 
-  // Therefore, we know that a user is NOT logged in if that Session variable is blank. 
   if (!empty($UserName)) { 
-    // Besides being logged in, you may restrict access to only certain users based on an ID established when they login. 
-    // Parse the strings into arrays. 
     $arrUsers = Explode(",", $strUsers); 
     $arrGroups = Explode(",", $strGroups); 
     if (in_array($UserName, $arrUsers)) { 
       $isValid = true; 
     } 
-    // Or, you may restrict access to only certain users based on their username. 
     if (in_array($UserGroup, $arrGroups)) { 
       $isValid = true; 
     } 
@@ -111,11 +100,11 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
   $updateSQL = sprintf("UPDATE resim SET resim=%s, altbaslik=%s, ustbaslik=%s, aciklama=%s WHERE id=%s",
-                       GetSQLValueString($_POST['resim'], "text"),
-                       GetSQLValueString($_POST['altbaslik'], "text"),
-                       GetSQLValueString($_POST['ustbaslik'], "text"),
-                       GetSQLValueString($_POST['aciklama'], "text"),
-                       GetSQLValueString($_POST['id'], "int"));
+  GetSQLValueString($_POST['resim'], "text"),
+  GetSQLValueString($_POST['altbaslik'], "text"),
+  GetSQLValueString($_POST['ustbaslik'], "text"),
+  GetSQLValueString($_POST['aciklama'], "text"),
+  GetSQLValueString($_POST['id'], "int"));
 
   mysql_select_db($database_baglan, $baglan);
   $Result1 = mysql_query($updateSQL, $baglan) or die(mysql_error());
@@ -140,7 +129,6 @@ $totalRows_resmiduzenle = mysql_num_rows($resmiduzenle);
 include "ust.php";
 ?>
   <div class="container">
-<!-- InstanceBeginEditable name="EditRegion1" -->
 <form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
   <table align="center">
     <tr valign="baseline">
@@ -166,9 +154,6 @@ include "ust.php";
   <input type="hidden" name="MM_update" value="form1" />
   <input type="hidden" name="id" value="<?php echo $row_resmiduzenle['id']; ?>" />
 </form>
-<p>&nbsp;</p>
-<!-- InstanceEndEditable -->
-
     </div>
 <?php
 include "alt.php";

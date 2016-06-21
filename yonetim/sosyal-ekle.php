@@ -128,8 +128,9 @@ $row_sosyalekle = mysql_fetch_assoc($sosyalekle);
 $totalRows_sosyalekle = mysql_num_rows($sosyalekle);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Yönetim Paneli</title>
 <link href="dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
