@@ -134,27 +134,29 @@ $queryString_deneyimler = sprintf("&totalRows_deneyimler=%d%s", $totalRows_deney
 include "ust.php";
 ?>
   <div class="container">
-    <a href="deneyim-ekle.php" class="navbar-btn btn-info btn pull-right">Deneyim Ekle</a>
-    <table class="table table-bordered table-hover table-responsive">
-      <tr>
-        <thead bgcolor="#46b8da" style="color:white;">
-          <th>Başlama Tarihi</th>
-          <th>Ayrılma Tarihi</th>
-          <th>Çalıştığın Yer</th>
-          <th colspan="3">Görevin</th>
-        </thead>
-      </tr>
-        <?php do { ?>
-          <tr>
-            <td><?php echo $row_deneyimler['baslamatarihi']; ?></td>
-            <td><?php echo $row_deneyimler['ayrilmatarihi']; ?></td>
-            <td><?php echo $row_deneyimler['calistigiyer']; ?></td>
-            <td width="171"><?php echo $row_deneyimler['gorevi']; ?></td>
-            <td width="16"><a href="deneyim-duzenle.php?id=<?php echo $row_deneyimler['id']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
-            <td width="16"><a href="deneyim-sil.php?id=<?php echo $row_deneyimler['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
-          </tr>
-          <?php } while ($row_deneyimler = mysql_fetch_assoc($deneyimler)); ?>
-    </table>
+    <div class="table-responsive">
+      <a href="deneyim-ekle.php" class="navbar-btn btn-info btn pull-right">Deneyim Ekle</a>
+      <table class="table table-bordered table-hover">
+        <tr>
+          <thead bgcolor="#46b8da" style="color:white;">
+            <th>Başlama Tarihi</th>
+            <th>Ayrılma Tarihi</th>
+            <th>Çalıştığın Yer</th>
+            <th colspan="3">Görevin</th>
+          </thead>
+        </tr>
+          <?php do { ?>
+            <tr>
+              <td><?php echo $row_deneyimler['baslamatarihi']; ?></td>
+              <td><?php echo $row_deneyimler['ayrilmatarihi']; ?></td>
+              <td><?php echo $row_deneyimler['calistigiyer']; ?></td>
+              <td width="171"><?php echo $row_deneyimler['gorevi']; ?></td>
+              <td width="16"><a href="deneyim-duzenle.php?id=<?php echo $row_deneyimler['id']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+              <td width="16"><a href="deneyim-sil.php?id=<?php echo $row_deneyimler['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+            </tr>
+            <?php } while ($row_deneyimler = mysql_fetch_assoc($deneyimler)); ?>
+      </table>
+    </div>
 
     <table border="0">
       <tr>

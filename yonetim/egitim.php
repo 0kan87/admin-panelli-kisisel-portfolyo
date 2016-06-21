@@ -130,27 +130,29 @@ $queryString_egitim = sprintf("&totalRows_egitim=%d%s", $totalRows_egitim, $quer
 include "ust.php";
 ?>
   <div class="container">
-    <a href="egitim-ekle.php" class="navbar-btn btn-info btn pull-right">Eğitim Ekle</a>
-    <table class="table table-hover table-bordered">
-      <tr>
-        <thead bgcolor="#46b8da" style="color:white;">
-          <th>Başlama Yılı</th>
-          <th>Bitirme Yılı</th>
-          <th>Eğitim Türü</th>
-          <th colspan="3">Eğitim Bölümü/Eylemi</th>
-        </thead>
-      </tr>
-        <?php do { ?>
-          <tr>
-            <td><?php echo $row_egitim['baslamatarihi']; ?></td>
-            <td><?php echo $row_egitim['bitirmetarihi']; ?></td>
-            <td><?php echo $row_egitim['okulduzeyi']; ?></td>
-            <td width="203"><?php echo $row_egitim['bolum']; ?></td>
-            <td width="4"><center><a href="egitim-duzenle.php?id=<?php echo $row_egitim['id']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></center></td>
-            <td width="4"><center><a href="egitim-sil.php?id=<?php echo $row_egitim['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center></td>
-          </tr>
-          <?php } while ($row_egitim = mysql_fetch_assoc($egitim)); ?>
-    </table>
+    <div class="table-responsive">
+      <a href="egitim-ekle.php" class="navbar-btn btn-info btn pull-right">Eğitim Ekle</a>
+      <table class="table table-hover table-bordered">
+        <tr>
+          <thead bgcolor="#46b8da" style="color:white;">
+            <th>Başlama Yılı</th>
+            <th>Bitirme Yılı</th>
+            <th>Eğitim Türü</th>
+            <th colspan="3">Eğitim Bölümü/Eylemi</th>
+          </thead>
+        </tr>
+          <?php do { ?>
+            <tr>
+              <td><?php echo $row_egitim['baslamatarihi']; ?></td>
+              <td><?php echo $row_egitim['bitirmetarihi']; ?></td>
+              <td><?php echo $row_egitim['okulduzeyi']; ?></td>
+              <td width="203"><?php echo $row_egitim['bolum']; ?></td>
+              <td width="4"><center><a href="egitim-duzenle.php?id=<?php echo $row_egitim['id']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></center></td>
+              <td width="4"><center><a href="egitim-sil.php?id=<?php echo $row_egitim['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center></td>
+            </tr>
+            <?php } while ($row_egitim = mysql_fetch_assoc($egitim)); ?>
+      </table>
+    </div>
 
     <table border="0">
       <tr>

@@ -234,7 +234,7 @@ include "ust.php";
     <div class="col-xs-12 col-sm-6 col-md-6">
       <div class="panel panel-default">
       <div class="panel-heading">Yetenekler Sağ Bölüm</div>
-        <table class="table table-bordered table-hover table-condensed table-responsive">
+        <table class="table table-bordered table-hover table-condensed">
           <thead bgcolor="#46b8da" style="color:white;">
             <tr>
               <th>Renk</th>

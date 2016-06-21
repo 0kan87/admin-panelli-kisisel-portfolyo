@@ -23,8 +23,7 @@ if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
     exit;
   }
 }
-?>
-<?php
+
 if (!isset($_SESSION)) {
 	ob_start();
   session_start();
@@ -63,8 +62,7 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
   exit;
 }
 ob_end_flush();
-?>
-<?php
+
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -104,25 +102,27 @@ $totalRows_sosyal = mysql_num_rows($sosyal);
 include "ust.php";
 ?>
   <div class="container">
-      <a href="sosyal-ekle.php" class="navbar-btn btn-info btn pull-right">Sosyal Link Ekle</a>
-      <table class="table table-bordered table-hover table-responsive">
-        <thead bgcolor="#46b8da" style="color:white;">
-          <tr>
-            <th>Renk</th>
-            <th colspan="3">Link</th>
-          </tr>
-        </thead>
-        <?php do { ?>
-        <tbody>
-          <tr>
-            <td bgcolor="<?php echo $row_sosyal['renk']; ?>"></td>
-            <td><?php echo $row_sosyal['link']; ?></td>
-            <td width="4%"><center><a href="sosyal-duzenle.php?id=<?php echo $row_sosyal['id']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></center></td>
-            <td width="4%"><center><a href="sosyal-sil.php?id=<?php echo $row_sosyal['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center></td>
-          </tr>
-        </tbody>
-        <?php } while ($row_sosyal = mysql_fetch_assoc($sosyal)); ?>
-      </table>
+      <div class="table-responsive">
+        <a href="sosyal-ekle.php" class="navbar-btn btn-info btn pull-right">Sosyal Link Ekle</a>
+        <table class="table table-bordered table-hover">
+          <thead bgcolor="#46b8da" style="color:white;">
+            <tr>
+              <th>Renk</th>
+              <th colspan="3">Link</th>
+            </tr>
+          </thead>
+          <?php do { ?>
+          <tbody>
+            <tr>
+              <td bgcolor="<?php echo $row_sosyal['renk']; ?>"></td>
+              <td><?php echo $row_sosyal['link']; ?></td>
+              <td width="4%"><center><a href="sosyal-duzenle.php?id=<?php echo $row_sosyal['id']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></center></td>
+              <td width="4%"><center><a href="sosyal-sil.php?id=<?php echo $row_sosyal['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center></td>
+            </tr>
+          </tbody>
+          <?php } while ($row_sosyal = mysql_fetch_assoc($sosyal)); ?>
+        </table>
+      </div>
   </div>
 <?php
 include "alt.php";
