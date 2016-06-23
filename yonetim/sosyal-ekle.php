@@ -126,45 +126,8 @@ $query_sosyalekle = sprintf("SELECT * FROM sosyal WHERE id = %s", GetSQLValueStr
 $sosyalekle = mysql_query($query_sosyalekle, $baglan) or die(mysql_error());
 $row_sosyalekle = mysql_fetch_assoc($sosyalekle);
 $totalRows_sosyalekle = mysql_num_rows($sosyalekle);
+include "ust.php";
 ?>
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Yönetim Paneli</title>
-<link href="dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
-<script src="//code.jquery.com/jquery-2.2.2.min.js"></script>
-<script src="dist/js/bootstrap-colorpicker.js"></script>
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-</head>
-<body>
-  <div class="navbar navbar-inverse navbar-static-top">
-    <div class="container">
-      <a href="./" class="navbar-brand">Admin Paneli</a>
-      
-      <button class="navbar-toggle" data-toggle="collapse" data-target=".navbarSec">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <div class="collapse navbar-collapse navbarSec">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="index.php">Anasayfa</a></li>
-            <li><a href="ayarlar.php">Ayarlar</a></li>
-            <li><a href="profil-resmi-ekle.php">Profil Resmi</a></li>
-            <li><a href="galeri.php">Resim Galerisi</a></li>
-            <li><a href="deneyimler.php">Deneyimler</a></li>
-            <li><a href="egitim.php">Eğitimler</a></li>
-            <li><a href="sosyal.php">Sosyal Linkler</a></li>
-            <li><a href="yetenekler.php">Yetenekler</a></li>
-            <li><a href="../index.php">Site Anasayfa</a></li>
-          <li><a href="<?php echo $logoutAction ?>">Çıkış</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
 
   <div class="container">
     <form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
@@ -229,7 +192,6 @@ $totalRows_sosyalekle = mysql_num_rows($sosyalekle);
           <th>Renk</th>
           <th>Renk Adı</th>
           <th>#Hex</th>
-          <th>RGB</th>
         </tr>
       </thead>
       <tbody>
@@ -237,69 +199,46 @@ $totalRows_sosyalekle = mysql_num_rows($sosyalekle);
           <th scope="row" bgcolor="#3b5998"></th>
           <td>Facebook Blue</td>
           <td>#3b5998</td>
-          <td>59,89,152</td>
         </tr>
         <tr>
           <th scope="row" bgcolor="#00aced"></th>
           <td>Twitter Blue</td>
           <td>#00aced</td>
-          <td>0,172,237</td>
         </tr>
         <tr>
           <th scope="row" bgcolor="#dd4b39"></th>
           <td>Google+ Red</td>
           <td>#dd4b39</td>
-          <td>221,75,57</td>
         </tr>
         <tr>
           <th scope="row" bgcolor="#bb0000"></th>
           <td>YouTube Red</td>
           <td>#bb0000</td>
-          <td>187,0,0</td>   
         </tr>
         <tr>
           <th scope="row" bgcolor="#517fa4"></th>
           <td>Instagram Blue</td>
           <td>#517fa4</td>
-          <td>81,127,164</td>
         </tr>
         <tr>
           <th scope="row" bgcolor="#cb2027"></th>
           <td>Pinterest Red</td>
           <td>#cb2027</td>
-          <td>203,32,39</td>
         </tr>
         <tr>
           <th scope="row" bgcolor="#aad450"></th>
           <td>Vimeo Green</td>
           <td>#aad450</td>
-          <td>170,212,80</td>
         </tr>
         <tr>
           <th scope="row" bgcolor="#007bb6"></th>
           <td>Linkedin Blue</td>
           <td>#007bb6</td>
-          <td>0,123,182</td>   
         </tr>    
       </tbody>
     </table>
   </div>
-  </br>
-  <div class="container">
-    <div class="alert alert-warning alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      Oluşabilecek her hata için lütfen <a href="http://okandiyebiri.com/admin-panelli-kisisel-site-scripti/"><strong>destek</strong></a> sitesini ziyaret edin.
-    </div>
-  </div></br></br>
-
-  <div class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-      <p class="navbar-text pull-left">Okan IŞIK</p>
-      <a href="//okandiyebiri.com" class="navbar-btn btn-info btn pull-right">okandiyebiri.com</a>
-    </div>
-  </div>
-</body>
-</html>
 <?php
+include "alt.php";
 mysql_free_result($sosyalekle);
 ?>

@@ -129,168 +129,168 @@ $totalRows_ayarlar = mysql_num_rows($ayarlar);
 include "ust.php";
 ?>
   <div class="container">
-  <form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
-	<div class="col-xs-12 col-sm-6 col-md-4">
-    <table class="table table-bordered table-hover table-responsive">
-      <thead bgcolor="#46b8da" style="color:white;">
-        <tr>
-          <th>Adı Soyadı</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" class="form-control" name="adsoyadi" value="<?php echo htmlentities($row_ayarlar['adsoyadi'], ENT_COMPAT, 'utf-8'); ?>" /></td>
-        </tr>
-      </tbody>
-    </table>
+    <form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
+  	<div class="col-xs-12 col-sm-6 col-md-4">
+      <table class="table table-bordered">
+        <thead bgcolor="#46b8da" style="color:white;">
+          <tr>
+            <th>Adı Soyadı</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" class="form-control" name="adsoyadi" value="<?php echo htmlentities($row_ayarlar['adsoyadi'], ENT_COMPAT, 'utf-8'); ?>" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <table class="table table-bordered">
+        <thead bgcolor="#46b8da" style="color:white;">
+          <tr>
+            <th>Kullanıcı Adı</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" class="form-control" name="kullaniciadi" value="<?php echo htmlentities($row_ayarlar['kullaniciadi'], ENT_COMPAT, 'utf-8'); ?>" /></td>
+          </tr>
+        </tbody>
+      </table>
+  	</div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <table class="table table-bordered">
+        <thead bgcolor="#46b8da" style="color:white;">
+          <tr>
+            <th>Eposta Adresi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" class="form-control" name="emailadresi" value="<?php echo htmlentities($row_ayarlar['emailadresi'], ENT_COMPAT, 'utf-8'); ?>" /></td>
+          </tr>
+        </tbody>
+      </table>
+  	</div>
+
+  	<div class="col-xs-12 col-sm-6 col-md-4">
+      <table class="table table-bordered">
+        <thead bgcolor="#46b8da" style="color:white;">
+          <tr>
+            <th>Telefon Numaranız</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" class="form-control" name="telefonnumarasi" value="<?php echo htmlentities($row_ayarlar['telefonnumarasi'], ENT_COMPAT, 'utf-8'); ?>" /></td>
+          </tr>
+        </tbody>
+      </table>
+  	</div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <table class="table table-bordered">
+        <thead bgcolor="#46b8da" style="color:white;">
+          <tr>
+            <th>Kullanıcı Şifresi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" class="form-control" name="sifre" value="<?php echo htmlentities($row_ayarlar['sifre'], ENT_COMPAT, 'utf-8'); ?>" /></td>
+          </tr>
+        </tbody>
+      </table>
+  	</div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <table class="table table-bordered">
+        <thead bgcolor="#46b8da" style="color:white;">
+          <tr>
+            <th>Varsa Başka Site Adresiniz</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="url" class="form-control" name="siteadresi" value="<?php echo htmlentities($row_ayarlar['siteadresi'], ENT_COMPAT, 'utf-8'); ?>" /></td>
+          </tr>
+        </tbody>
+      </table>
+  	</div>
+
+  	<div class="col-xs-12 col-sm-12 col-md-12">
+      <table class="table table-bordered">
+        <thead bgcolor="#46b8da" style="color:white;">
+          <tr>
+            <th>Site Başlığı(70 Karakter İdealdir.)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" class="form-control" name="sitebaslik" value="<?php echo htmlentities($row_ayarlar['sitebaslik'], ENT_COMPAT, 'utf-8'); ?>" /></td>
+          </tr>
+        </tbody>
+      </table>  
+  	</div>
+
+  	<div class="col-xs-12 col-sm-12 col-md-12">
+      <table class="table table-bordered">
+        <thead bgcolor="#46b8da" style="color:white;">
+          <tr>
+            <th colspan="2">Açılış Sayfası Yazısı</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Konu Başlığı</td>
+            <td><input type="text" class="form-control" name="ilksayfabaslik" value="<?php echo htmlentities($row_ayarlar['ilksayfabaslik'], ENT_COMPAT, 'utf-8'); ?>" /></td>
+          </tr>
+          <tr>
+            <td colspan="2"><textarea class="ckeditor" name="ilksayfaicerik"><?php echo htmlentities($row_ayarlar['ilksayfaicerik'], ENT_COMPAT, 'utf-8'); ?></textarea></td>
+          </tr>
+        </tbody>
+      </table>  
+  	</div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <table class="table table-bordered">
+        <thead bgcolor="#46b8da" style="color:white;">
+          <tr>
+            <th>Site Açıklaması</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="url" class="form-control" name="siteaciklama" value="<?php echo htmlentities($row_ayarlar['siteaciklama'], ENT_COMPAT, 'utf-8'); ?>" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <table class="table table-bordered">
+        <thead bgcolor="#46b8da" style="color:white;">
+          <tr>
+            <th>Anahtar Kelimeleriniz</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" class="form-control" name="anahtarkelime" value="<?php echo htmlentities($row_ayarlar['anahtarkelime'], ENT_COMPAT, 'utf-8'); ?>" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-xs-12 col-sm-4 col-md-4">
+      <input type="submit" class="form-control btn btn-warning" value="Tüm Herşeyi Kaydet" />
+      <input type="hidden" name="MM_update" value="form1" />
+      <input type="hidden" name="id" value="<?php echo $row_ayarlar['id']; ?>" />
+  	</div>
+    </form>
   </div>
-
-  <div class="col-xs-12 col-sm-6 col-md-4">
-    <table class="table table-bordered table-hover table-responsive">
-      <thead bgcolor="#46b8da" style="color:white;">
-        <tr>
-          <th>Kullanıcı Adı</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" class="form-control" name="kullaniciadi" value="<?php echo htmlentities($row_ayarlar['kullaniciadi'], ENT_COMPAT, 'utf-8'); ?>" /></td>
-        </tr>
-      </tbody>
-    </table>
-	</div>
-
-  <div class="col-xs-12 col-sm-6 col-md-4">
-    <table class="table table-bordered table-hover table-responsive">
-      <thead bgcolor="#46b8da" style="color:white;">
-        <tr>
-          <th>Eposta Adresi</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" class="form-control" name="emailadresi" value="<?php echo htmlentities($row_ayarlar['emailadresi'], ENT_COMPAT, 'utf-8'); ?>" /></td>
-        </tr>
-      </tbody>
-    </table>
-	</div>
-
-	<div class="col-xs-12 col-sm-6 col-md-4">
-    <table class="table table-bordered table-hover table-responsive">
-      <thead bgcolor="#46b8da" style="color:white;">
-        <tr>
-          <th>Telefon Numaranız</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" class="form-control" name="telefonnumarasi" value="<?php echo htmlentities($row_ayarlar['telefonnumarasi'], ENT_COMPAT, 'utf-8'); ?>" /></td>
-        </tr>
-      </tbody>
-    </table>
-	</div>
-
-  <div class="col-xs-12 col-sm-6 col-md-4">
-    <table class="table table-bordered table-hover table-responsive">
-      <thead bgcolor="#46b8da" style="color:white;">
-        <tr>
-          <th>Kullanıcı Şifresi</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" class="form-control" name="sifre" value="<?php echo htmlentities($row_ayarlar['sifre'], ENT_COMPAT, 'utf-8'); ?>" /></td>
-        </tr>
-      </tbody>
-    </table>
-	</div>
-
-  <div class="col-xs-12 col-sm-6 col-md-4">
-    <table class="table table-bordered table-hover table-responsive">
-      <thead bgcolor="#46b8da" style="color:white;">
-        <tr>
-          <th>Varsa Başka Site Adresiniz</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="url" class="form-control" name="siteadresi" value="<?php echo htmlentities($row_ayarlar['siteadresi'], ENT_COMPAT, 'utf-8'); ?>" /></td>
-        </tr>
-      </tbody>
-    </table>
-	</div>
-
-	<div class="col-xs-12 col-sm-12 col-md-12">
-    <table class="table table-bordered table-hover table-responsive">
-      <thead bgcolor="#46b8da" style="color:white;">
-        <tr>
-          <th>Site Başlığı(70 Karakter İdealdir.)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" class="form-control" name="sitebaslik" value="<?php echo htmlentities($row_ayarlar['sitebaslik'], ENT_COMPAT, 'utf-8'); ?>" /></td>
-        </tr>
-      </tbody>
-    </table>  
-	</div>
-
-	<div class="col-xs-12 col-sm-12 col-md-12">
-    <table class="table table-bordered table-responsive">
-      <thead bgcolor="#46b8da" style="color:white;">
-        <tr>
-          <th colspan="2">Açılış Sayfası Yazısı</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Konu Başlığı</td>
-          <td><input type="text" class="form-control" name="ilksayfabaslik" value="<?php echo htmlentities($row_ayarlar['ilksayfabaslik'], ENT_COMPAT, 'utf-8'); ?>" /></td>
-        </tr>
-        <tr>
-          <td colspan="2"><textarea class="ckeditor" name="ilksayfaicerik"><?php echo htmlentities($row_ayarlar['ilksayfaicerik'], ENT_COMPAT, 'utf-8'); ?></textarea></td>
-        </tr>
-      </tbody>
-    </table>  
-	</div>
-
-  <div class="col-xs-12 col-sm-6 col-md-4">
-    <table class="table table-bordered table-hover table-responsive">
-      <thead bgcolor="#46b8da" style="color:white;">
-        <tr>
-          <th>Site Açıklaması</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="url" class="form-control" name="siteaciklama" value="<?php echo htmlentities($row_ayarlar['siteaciklama'], ENT_COMPAT, 'utf-8'); ?>" /></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="col-xs-12 col-sm-6 col-md-4">
-    <table class="table table-bordered table-hover table-responsive">
-      <thead bgcolor="#46b8da" style="color:white;">
-        <tr>
-          <th>Anahtar Kelimeleriniz</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" class="form-control" name="anahtarkelime" value="<?php echo htmlentities($row_ayarlar['anahtarkelime'], ENT_COMPAT, 'utf-8'); ?>" /></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="col-xs-12 col-sm-4 col-md-4">
-    <input type="submit" class="form-control btn btn-warning" value="Tüm Herşeyi Kaydet" />
-    <input type="hidden" name="MM_update" value="form1" />
-    <input type="hidden" name="id" value="<?php echo $row_ayarlar['id']; ?>" />
-	</div>
-  </form>
-</div>
 
 <?php
 include "alt.php";

@@ -12,8 +12,6 @@
       <a href="//okandiyebiri.com" class="navbar-btn btn-info btn pull-right">okandiyebiri.com</a>
     </div>
   </div>
-
-  <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
+  <script src="//getbootstrap.com/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

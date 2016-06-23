@@ -140,45 +140,8 @@ $query_yetenekduzenle = sprintf("SELECT * FROM yetenekler WHERE id = %s", GetSQL
 $yetenekduzenle = mysql_query($query_yetenekduzenle, $baglan) or die(mysql_error());
 $row_yetenekduzenle = mysql_fetch_assoc($yetenekduzenle);
 $totalRows_yetenekduzenle = mysql_num_rows($yetenekduzenle);
+include "ust.php";
 ?>
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Yönetim Paneli</title>
-<link href="dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
-<script src="//code.jquery.com/jquery-2.2.2.min.js"></script>
-<script src="dist/js/bootstrap-colorpicker.js"></script>
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-</head>
-<body>
-  <div class="navbar navbar-inverse navbar-static-top">
-    <div class="container">
-      <a href="./" class="navbar-brand">Admin Paneli</a>
-      
-      <button class="navbar-toggle" data-toggle="collapse" data-target=".navbarSec">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <div class="collapse navbar-collapse navbarSec">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="index.php">Anasayfa</a></li>
-            <li><a href="ayarlar.php">Ayarlar</a></li>
-            <li><a href="profil-resmi-ekle.php">Profil Resmi</a></li>
-            <li><a href="galeri.php">Resim Galerisi</a></li>
-            <li><a href="deneyimler.php">Deneyimler</a></li>
-            <li><a href="egitim.php">Eğitimler</a></li>
-            <li><a href="sosyal.php">Sosyal Linkler</a></li>
-            <li><a href="yetenekler.php">Yetenekler</a></li>
-            <li><a href="../index.php">Site Anasayfa</a></li>
-          <li><a href="<?php echo $logoutAction ?>">Çıkış</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
 
   <div class="container">
     <form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
@@ -223,25 +186,7 @@ $totalRows_yetenekduzenle = mysql_num_rows($yetenekduzenle);
     </div>
     </form>
   </div>
-
-  </br>
-  <div class="container">
-    <div class="alert alert-warning alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      Oluşabilecek her hata için lütfen <a href="http://okandiyebiri.com/admin-panelli-kisisel-site-scripti/"><strong>destek</strong></a> sitesini ziyaret edin.
-    </div>
-  </div></br></br>
-
-  <div class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-      <p class="navbar-text pull-left">Okan IŞIK</p>
-      <a href="//okandiyebiri.com" class="navbar-btn btn-info btn pull-right">okandiyebiri.com</a>
-    </div>
-  </div>
-  <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script> 
-</body>
-</html>
 <?php
+include "alt.php";
 mysql_free_result($yetenekduzenle);
 ?>

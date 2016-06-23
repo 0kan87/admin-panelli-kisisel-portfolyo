@@ -62,33 +62,27 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
 include "ust.php";
 ?>
   <div class="container">
-    <form name="yuklemeformu" method="post" action="" enctype="multipart/form-data"> 
-          <label for="file"><input type="file" name="file" class="btn btn-info" /></label>
-          
-          <input type="submit" value="Yükle" class="btn btn-info" name="B1">
-    </form>
-    <p>
-      <?php
-$yeniisim = "../img/profil.jpg";
-if(@is_uploaded_file($_FILES["file"]['tmp_name'])) {
-if(move_uploaded_file($_FILES["file"]['tmp_name'],$yeniisim))
-echo '<p>Profil resminiz <b>güncellendi</b>...</p>
-	<table width="93" border="0">
-      <tr>
-        <td width="87"><img src="../img/profil.jpg" width="200" height="200" alt="Profil Resmi" /></td>
-      </tr>
-    </table>';
-}else{
-echo '<p>Şuan ki profil resminiz...</p>
-	<table width="93" border="0">
-      <tr>
-        <td width="87"><img src="../img/profil.jpg" width="200" height="200" alt="Profil Resmi" /></td>
-      </tr>
-    </table>';
-}
- ?>
-      
-    Önerilen profil resmi boyutu 150x150 pixeldir. Yeniden boyutlandırma yapılmaz.</p>
+    <div class="col-md-4 col-md-offset-4">
+      <form name="yuklemeformu" method="post" action="" enctype="multipart/form-data"> 
+        <label for="file"><input type="file" name="file"/></label>
+        <input type="submit" value="Yükle" class="btn btn-info" name="B1">
+      </form>
 
-    </div>
+      <?php $yeniisim = "../img/profil.jpg";
+      if(@is_uploaded_file($_FILES["file"]['tmp_name'])) {
+      if(move_uploaded_file($_FILES["file"]['tmp_name'],$yeniisim)) ?>
+      <br/>
+      <div class="alert alert-success" role="alert">Profil resmi başarıyla güncellendi!</div>
+
+      <img src="../img/profil.jpg" class="thumbnail img-responsive" alt="Profil Resmi" />
+
+      <?php }else{ ?>
+      <br/>
+
+      <div class="alert alert-success" role="alert">Şuan ki Profil resminiz! Önerilen profil resmi boyutu 150x150 pixeldir. Yeniden boyutlandırma yapılmaz.</div>
+      <img src="../img/profil.jpg" class="thumbnail img-responsive" alt="Profil Resmi" />
+
+      <?php } ?>
+      </div>
+  </div>
 <?php include "alt.php"; ?>
