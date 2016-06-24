@@ -40,7 +40,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-			<li class="active"><a href="index.php">Anasayfa</a></li>
+            <li class="active"><a href="index.php">Anasayfa</a></li>
             <li><a href="ayarlar.php">Ayarlar</a></li>
             <li><a href="profil-resmi-ekle.php">Profil Resmi</a></li>
             <li><a href="galeri.php">Resim Galerisi</a></li>
@@ -49,7 +49,7 @@
             <li><a href="sosyal.php">Sosyal Linkler</a></li>
             <li><a href="yetenekler.php">Yetenekler</a></li>
             <li><a href="../index.php">Site Anasayfa</a></li>
-			<li><a href="<?php echo $logoutAction ?>">Çıkış</a></li>
+            <li><a href="<?php echo $logoutAction ?>">Çıkış</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
