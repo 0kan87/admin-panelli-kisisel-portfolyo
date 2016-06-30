@@ -130,8 +130,8 @@ $queryString_egitim = sprintf("&totalRows_egitim=%d%s", $totalRows_egitim, $quer
 include "ust.php";
 ?>
   <div class="container">
+    <p class="text-right"><a href="egitim-ekle.php" class="btn btn-info">Eğitim Ekle</a></p>
     <div class="table-responsive">
-      <a href="egitim-ekle.php" class="navbar-btn btn-info btn pull-right">Eğitim Ekle</a>
       <table class="table table-hover table-bordered">
         <tr>
           <thead bgcolor="#46b8da" style="color:white;">

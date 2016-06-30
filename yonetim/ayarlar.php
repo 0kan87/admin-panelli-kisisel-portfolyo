@@ -263,7 +263,7 @@ include "ust.php";
         </thead>
         <tbody>
           <tr>
-            <td><input type="url" class="form-control" name="siteaciklama" value="<?php echo htmlentities($row_ayarlar['siteaciklama'], ENT_COMPAT, 'utf-8'); ?>" /></td>
+            <td><input type="text" class="form-control" name="siteaciklama" value="<?php echo htmlentities($row_ayarlar['siteaciklama'], ENT_COMPAT, 'utf-8'); ?>" /></td>
           </tr>
         </tbody>
       </table>

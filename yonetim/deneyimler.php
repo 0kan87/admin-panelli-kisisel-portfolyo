@@ -134,8 +134,8 @@ $queryString_deneyimler = sprintf("&totalRows_deneyimler=%d%s", $totalRows_deney
 include "ust.php";
 ?>
   <div class="container">
+    <p class="text-right"><a href="deneyim-ekle.php" class="btn btn-info">Deneyim Ekle</a></p>
     <div class="table-responsive">
-      <a href="deneyim-ekle.php" class="navbar-btn btn-info btn pull-right">Deneyim Ekle</a>
       <table class="table table-bordered table-hover">
         <tr>
           <thead bgcolor="#46b8da" style="color:white;">

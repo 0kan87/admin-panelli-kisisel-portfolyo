@@ -60,12 +60,6 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
   header("Location: ". $MM_restrictGoTo); 
   exit;
 }
-include "ust.php";
+header("Location: ayarlar.php");
+include "alt.php";
 ?>
-<div class="container">
-  <div class="alert alert-warning alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong> İşlem Başarılı!</strong> <a href="ayarlar.php">Geri Dön</a>
-  </div>
-</div>
-<?php include "alt.php"; ?>
