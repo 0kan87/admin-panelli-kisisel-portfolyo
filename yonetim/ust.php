@@ -11,7 +11,7 @@
     <title>Yönetim Paneli</title>
 
     <link href="dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
-    <link href="//getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="//getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="//getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
